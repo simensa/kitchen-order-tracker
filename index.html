@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitchen Order Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', 'Open Sans', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#F8F8F8] text-[#2D3436] p-4">
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">Kitchen Order Tracker</h1>
+    
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <!-- Item Cards -->
+      <script>
+        const items = [
+          "KFC - BL", "KFC - 8", "KFC - 4", "Beef", "Jeyuk",
+          "Bibim", "Bibim - V", "Bibim - V egg", "Gimbap", "Japchae"
+        ];
+      </script>
+
+      <!-- We'll inject cards here dynamically using JS -->
+      <div id="grid" class="contents"></div>
+    </div>
+  </div>
+
+  <script>
+    const grid = document.getElementById('grid');
+
+    items.forEach((item, index) => {
+      const card = document.createElement('div');
+      card.className = 'bg-white rounded-2xl shadow p-4 flex flex-col items-center justify-between text-center';
+
+      card.innerHTML = `
+        <button onclick="changeQty(${index}, 1)" class="w-full py-2 bg-[#FF6B35] text-white font-bold text-xl rounded-lg mb-2">＋</button>
+        <div class="text-lg font-semibold mb-1">${item}</div>
+        <div id="qty-${index}" class="text-3xl font-bold mb-1">0</div>
+        <button onclick="changeQty(${index}, -1)" class="w-full py-2 bg-[#004225] text-white font-bold text-xl rounded-lg mt-2">−</button>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    const quantities = Array(10).fill(0);
+
+    function changeQty(index, delta) {
+      quantities[index] = Math.max(0, quantities[index] + delta);
+      document.getElementById(`qty-${index}`).innerText = quantities[index];
+    }
+  </script>
+</body>
+</html>
