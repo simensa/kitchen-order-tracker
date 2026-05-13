@@ -1,57 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kitchen Order Tracker</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     body {
       font-family: 'Roboto', 'Open Sans', sans-serif;
     }
   </style>
 </head>
+
 <body class="bg-[#F8F8F8] text-[#2D3436] p-4">
   <div class="max-w-5xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6 text-center">Kitchen Order Tracker</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">
+      Kitchen Order Tracker
+    </h1>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-      <!-- Item Cards -->
-      <script>
-        const items = [
-          "KFC - BL", "KFC - 8", "KFC - 4", "Beef", "Jeyuk",
-          "Bibim", "Bibim - V", "Bibim - V egg", "Gimbap", "Japchae"
-        ];
-      </script>
-
-      <!-- We'll inject cards here dynamically using JS -->
       <div id="grid" class="contents"></div>
     </div>
   </div>
 
-  <script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+    import {
+      getDatabase,
+      ref,
+      set,
+      onValue
+    } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAuxTOa79Q53VQ9-hFPVrbaopcUmb-k618",
+      authDomain: "kitchen-tracker-6563e.firebaseapp.com",
+      databaseURL: "https://kitchen-tracker-6563e-default-rtdb.firebaseio.com",
+      projectId: "kitchen-tracker-6563e",
+      storageBucket: "kitchen-tracker-6563e.firebasestorage.app",
+      messagingSenderId: "910563195014",
+      appId: "1:910563195014:web:7c826936ec28edfa273907"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Realtime Database
+    const db = getDatabase(app);
+
+    // Menu items
+    const items = [
+      "KFC - BL",
+      "KFC - 8",
+      "KFC - 4",
+      "Beef",
+      "Jeyuk",
+      "Bibim",
+      "Bibim - V",
+      "Bibim - V egg",
+      "Gimbap",
+      "Japchae"
+    ];
+
     const grid = document.getElementById('grid');
 
+    // Create cards
     items.forEach((item, index) => {
       const card = document.createElement('div');
-      card.className = 'bg-white rounded-xl shadow p-2 flex flex-col items-center justify-between text-center';
+
+      card.className =
+        'bg-white rounded-xl shadow p-2 flex flex-col items-center justify-between text-center';
 
       card.innerHTML = `
-        <button onclick="changeQty(${index}, 1)" class="w-full py-1 text-sm bg-[#FF6B35] text-white font-bold rounded mb-1">＋</button>
-        <div class="text-sm font-medium mb-1">${item}</div>
-        <div id="qty-${index}" class="text-2xl font-bold mb-1">0</div>
-        <button onclick="changeQty(${index}, -1)" class="w-full py-1 text-sm bg-[#004225] text-white font-bold rounded mt-1">−</button>
+        <button
+          class="w-full py-1 text-sm bg-[#FF6B35] text-white font-bold rounded mb-1"
+        >
+          ＋
+        </button>
+
+        <div class="text-sm font-medium mb-1">
+          ${item}
+        </div>
+
+        <div id="qty-${index}" class="text-2xl font-bold mb-1">
+          0
+        </div>
+
+        <button
+          class="w-full py-1 text-sm bg-[#004225] text-white font-bold rounded mt-1"
+        >
+          −
+        </button>
       `;
 
+      const buttons = card.querySelectorAll('button');
+
+      // Plus button
+      buttons[0].addEventListener('click', () => {
+        changeQty(index, 1);
+      });
+
+      // Minus button
+      buttons[1].addEventListener('click', () => {
+        changeQty(index, -1);
+      });
 
       grid.appendChild(card);
     });
 
-    const quantities = Array(10).fill(0);
+    // Realtime listener
+    const ordersRef = ref(db, 'orders');
 
-    function changeQty(index, delta) {
-      quantities[index] = Math.max(0, quantities[index] + delta);
-      document.getElementById(`qty-${index}`).innerText = quantities[index];
+    onValue(ordersRef, (snapshot) => {
+      const data = snapshot.val() || {};
+
+      items.forEach((_, index) => {
+        const qty = data[index] || 0;
+
+        document.getElementById(`qty-${index}`).innerText = qty;
+      });
+    });
+
+    // Update quantity
+    async function changeQty(index, delta) {
+      const current = parseInt(
+        document.getElementById(`qty-${index}`).innerText
+      );
+
+      const newQty = Math.max(0, current + delta);
+
+      await set(ref(db, `orders/${index}`), newQty);
     }
   </script>
 </body>
