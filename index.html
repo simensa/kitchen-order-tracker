@@ -17,162 +17,139 @@
 
 
     <!-- CREATE ORDER -->
-    <div class="bg-white rounded-xl shadow p-4 mb-6">
-      <h2 class="text-xl font-bold mb-4">
-        Create Order
-      </h2>
+<div class="bg-white rounded-xl shadow p-4 mb-6">
+  <h2 class="text-xl font-bold mb-4">Create Order</h2>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+  <!-- GRID 1 -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
 
-        <div>
-          <label class="font-bold text-sm block mb-1">
-            Boneless
-          </label>
-
-          <div class="flex items-center justify-center gap-2">
-            <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="boneless">−</button>
-            <div id="display-boneless" class="text-2xl font-bold w-8 text-center">0</div>
-            <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="boneless">+</button>
-          </div>
-          <input id="boneless" type="hidden" value="0" />
-        </div>
-
-        <div>
-          <label class="font-bold text-sm block mb-1">
-            Half Boneless
-          </label>
-
-          <input
-            id="halfboneless"
-            type="number"
-            min="0"
-            value="0"
-            class="border rounded p-2 w-full"
-          />
-        </div>
-
-        <div>
-          <label class="font-bold text-sm block mb-1">
-            8 Wings
-          </label>
-
-          <input
-            id="wings8"
-            type="number"
-            min="0"
-            value="0"
-            class="border rounded p-2 w-full"
-          />
-        </div>
-
-        <div>
-          <label class="font-bold text-sm block mb-1">
-            4 Wings
-          </label>
-
-          <input
-            id="wings4"
-            type="number"
-            min="0"
-            value="0"
-            class="border rounded p-2 w-full"
-          />
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
-
-          <div>
-            <label class="font-bold text-sm block mb-1">
-              Beef bulgogi
-            </label>
-
-            <input
-              id="beefbulgogi"
-              type="number"
-              min="0"
-              value="0"
-              class="border rounded p-2 w-full"
-            />
-          </div>
-
-          <div>
-            <label class="font-bold text-sm block mb-1">
-              Jeyuk
-            </label>
-
-            <input
-              id="jeyuk"
-              type="number"
-              min="0"
-              value="0"
-              class="border rounded p-2 w-full"
-            />
-          </div>
-
-          <div>
-            <label class="font-bold text-sm block mb-1">
-              Bibimbap
-            </label>
-
-            <input
-              id="bibimbap"
-              type="number"
-              min="0"
-              value="0"
-              class="border rounded p-2 w-full"
-            />
-          </div>
-
-          <div>
-            <label class="font-bold text-sm block mb-1">
-              Bulgogi Japche
-            </label>
-
-            <input
-              id="bulgogijapche"
-              type="number"
-              min="0"
-              value="0"
-              class="border rounded p-2 w-full"
-            />
-          </div>
-
-          <div>
-            <label class="font-bold text-sm block mb-1">
-              Japche
-            </label>
-
-            <input
-              id="japche"
-              type="number"
-              min="0"
-              value="0"
-              class="border rounded p-2 w-full"
-            />
-          </div>
-        </div>
-
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-
-        <input
-          id="timeInput"
-          type="number"
-          min="1"
-          value="15"
-          class="border rounded p-2"
-          placeholder="Pickup in minutes"
-        />
-
-        <button
-          id="addBtn"
-          class="bg-orange-500 text-white rounded p-2 font-bold"
-        >
-          Add Order
-        </button>
+    <!-- Boneless -->
+    <div>
+      <label class="font-bold text-sm block mb-1">Boneless</label>
+      <div class="flex items-center justify-center gap-2">
+        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="boneless">−</button>
+        <div id="display-boneless" class="text-2xl font-bold w-8 text-center">0</div>
+        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="boneless">+</button>
       </div>
+      <input id="boneless" type="hidden" value="0" />
     </div>
 
+    <!-- Half Boneless -->
+    <div>
+      <label class="font-bold text-sm block mb-1">Half Boneless</label>
+      <div class="flex items-center justify-center gap-2">
+        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="halfboneless">−</button>
+        <div id="display-halfboneless" class="text-2xl font-bold w-8 text-center">0</div>
+        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="halfboneless">+</button>
+      </div>
+      <input id="halfboneless" type="hidden" value="0" />
+    </div>
+
+    <!-- 8 Wings -->
+    <div>
+      <label class="font-bold text-sm block mb-1">8 Wings</label>
+      <div class="flex items-center justify-center gap-2">
+        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="wings8">−</button>
+        <div id="display-wings8" class="text-2xl font-bold w-8 text-center">0</div>
+        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="wings8">+</button>
+      </div>
+      <input id="wings8" type="hidden" value="0" />
+    </div>
+
+    <!-- 4 Wings -->
+    <div>
+      <label class="font-bold text-sm block mb-1">4 Wings</label>
+      <div class="flex items-center justify-center gap-2">
+        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="wings4">−</button>
+        <div id="display-wings4" class="text-2xl font-bold w-8 text-center">0</div>
+        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="wings4">+</button>
+      </div>
+      <input id="wings4" type="hidden" value="0" />
+    </div>
+
+  </div>
+
+  <!-- GRID 2 -->
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+
+    <!-- Beef Bulgogi -->
+    <div>
+      <label class="font-bold text-sm block mb-1">Beef Bulgogi</label>
+      <div class="flex items-center justify-center gap-2">
+        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="beefbulgogi">−</button>
+        <div id="display-beefbulgogi" class="text-2xl font-bold w-8 text-center">0</div>
+        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="beefbulgogi">+</button>
+      </div>
+      <input id="beefbulgogi" type="hidden" value="0" />
+    </div>
+
+    <!-- Jeyuk -->
+    <div>
+      <label class="font-bold text-sm block mb-1">Jeyuk</label>
+      <div class="flex items-center justify-center gap-2">
+        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="jeyuk">−</button>
+        <div id="display-jeyuk" class="text-2xl font-bold w-8 text-center">0</div>
+        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="jeyuk">+</button>
+      </div>
+      <input id="jeyuk" type="hidden" value="0" />
+    </div>
+
+    <!-- Bibimbap -->
+    <div>
+      <label class="font-bold text-sm block mb-1">Bibimbap</label>
+      <div class="flex items-center justify-center gap-2">
+        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="bibimbap">−</button>
+        <div id="display-bibimbap" class="text-2xl font-bold w-8 text-center">0</div>
+        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="bibimbap">+</button>
+      </div>
+      <input id="bibimbap" type="hidden" value="0" />
+    </div>
+
+    <!-- Bulgogi Japche -->
+    <div>
+      <label class="font-bold text-sm block mb-1">Bulgogi Japche</label>
+      <div class="flex items-center justify-center gap-2">
+        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="bulgogijapche">−</button>
+        <div id="display-bulgogijapche" class="text-2xl font-bold w-8 text-center">0</div>
+        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="bulgogijapche">+</button>
+      </div>
+      <input id="bulgogijapche" type="hidden" value="0" />
+    </div>
+
+    <!-- Japche -->
+    <div>
+      <label class="font-bold text-sm block mb-1">Japche</label>
+      <div class="flex items-center justify-center gap-2">
+        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="japche">−</button>
+        <div id="display-japche" class="text-2xl font-bold w-8 text-center">0</div>
+        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="japche">+</button>
+      </div>
+      <input id="japche" type="hidden" value="0" />
+    </div>
+
+  </div>
+
+  <!-- GRID 3 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+    <input
+      id="timeInput"
+      type="number"
+      min="1"
+      value="15"
+      class="border rounded p-2"
+      placeholder="Pickup in minutes"
+    />
+
+    <button
+      id="addBtn"
+      class="bg-orange-500 text-white rounded p-2 font-bold"
+    >
+      Add Order
+    </button>
+
+  </div>
+</div>
 
     <!-- NEXT 15 MIN SUMMARY -->
     <div class="bg-white rounded-xl shadow p-4 mb-6">
