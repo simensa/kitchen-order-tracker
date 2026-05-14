@@ -2,28 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kitchen Order Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitchen Order Manager</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     body {
-      font-family: 'Roboto', 'Open Sans', sans-serif;
+      font-family: Arial, sans-serif;
     }
   </style>
 </head>
 
-<body class="bg-[#F8F8F8] text-[#2D3436] p-4">
-  <div class="max-w-5xl mx-auto">
+<body class="bg-gray-100 p-4 text-gray-800">
+  <div class="max-w-7xl mx-auto">
+
     <h1 class="text-3xl font-bold mb-6 text-center">
-      Kitchen Order Tracker
+      Kitchen Order Manager
     </h1>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-      <div id="grid" class="contents"></div>
+    <!-- ADD ORDER -->
+    <div class="bg-white rounded-xl shadow p-4 mb-6">
+      <h2 class="text-xl font-bold mb-4">Add Order</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+
+        <select id="itemSelect" class="border rounded p-2">
+          <option>KFC - BL</option>
+          <option>KFC - 8</option>
+          <option>KFC - 4</option>
+          <option>Beef</option>
+          <option>Jeyuk</option>
+          <option>Bibim</option>
+          <option>Bibim - V</option>
+          <option>Bibim - V egg</option>
+          <option>Gimbap</option>
+          <option>Japchae</option>
+        </select>
+
+        <input
+          id="qtyInput"
+          type="number"
+          min="1"
+          value="1"
+          class="border rounded p-2"
+          placeholder="Quantity"
+        />
+
+        <input
+          id="timeInput"
+          type="number"
+          min="1"
+          value="15"
+          class="border rounded p-2"
+          placeholder="Ready in minutes"
+        />
+
+        <button
+          id="addBtn"
+          class="bg-orange-500 text-white rounded p-2 font-bold"
+        >
+          Add Order
+        </button>
+      </div>
+    </div>
+
+
+    <!-- NEXT 15 MIN SUMMARY -->
+    <div class="bg-white rounded-xl shadow p-4 mb-6">
+      <h2 class="text-xl font-bold mb-4">
+        Production Needed Next 15 Minutes
+      </h2>
+
+      <div
+        id="summary"
+        class="grid grid-cols-2 md:grid-cols-5 gap-3"
+      ></div>
+    </div>
+
+
+    <!-- ACTIVE ORDERS -->
+    <div class="bg-white rounded-xl shadow p-4">
+      <h2 class="text-xl font-bold mb-4">Active Orders</h2>
+
+      <div id="ordersContainer" class="space-y-3"></div>
     </div>
   </div>
+
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
@@ -31,109 +96,200 @@
     import {
       getDatabase,
       ref,
-      set,
-      onValue
+      push,
+      onValue,
+      remove
     } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
-    // Firebase config
+
     const firebaseConfig = {
       apiKey: "AIzaSyAuxTOa79Q53VQ9-hFPVrbaopcUmb-k618",
       authDomain: "kitchen-tracker-6563e.firebaseapp.com",
-      databaseURL: "https://kitchen-tracker-6563e-default-rtdb.europe-west1.firebasedatabase.app/",
+      databaseURL: "https://kitchen-tracker-6563e-default-rtdb.europe-west1.firebasedatabase.app",
       projectId: "kitchen-tracker-6563e",
       storageBucket: "kitchen-tracker-6563e.firebasestorage.app",
       messagingSenderId: "910563195014",
       appId: "1:910563195014:web:7c826936ec28edfa273907"
     };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
 
-    // Initialize Realtime Database
+    const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // Menu items
-    const items = [
-      "KFC - BL",
-      "KFC - 8",
-      "KFC - 4",
-      "Beef",
-      "Jeyuk",
-      "Bibim",
-      "Bibim - V",
-      "Bibim - V egg",
-      "Gimbap",
-      "Japchae"
-    ];
 
-    const grid = document.getElementById('grid');
-
-    // Create cards
-    items.forEach((item, index) => {
-      const card = document.createElement('div');
-
-      card.className =
-        'bg-white rounded-xl shadow p-2 flex flex-col items-center justify-between text-center';
-
-      card.innerHTML = `
-        <button
-          class="w-full py-1 text-sm bg-[#FF6B35] text-white font-bold rounded mb-1"
-        >
-          ＋
-        </button>
-
-        <div class="text-sm font-medium mb-1">
-          ${item}
-        </div>
-
-        <div id="qty-${index}" class="text-2xl font-bold mb-1">
-          0
-        </div>
-
-        <button
-          class="w-full py-1 text-sm bg-[#004225] text-white font-bold rounded mt-1"
-        >
-          −
-        </button>
-      `;
-
-      const buttons = card.querySelectorAll('button');
-
-      // Plus button
-      buttons[0].addEventListener('click', () => {
-        changeQty(index, 1);
-      });
-
-      // Minus button
-      buttons[1].addEventListener('click', () => {
-        changeQty(index, -1);
-      });
-
-      grid.appendChild(card);
-    });
-
-    // Realtime listener
     const ordersRef = ref(db, 'orders');
 
+
+    const addBtn = document.getElementById('addBtn');
+    const itemSelect = document.getElementById('itemSelect');
+    const qtyInput = document.getElementById('qtyInput');
+    const timeInput = document.getElementById('timeInput');
+
+    const ordersContainer = document.getElementById('ordersContainer');
+    const summaryContainer = document.getElementById('summary');
+
+
+    // ADD ORDER
+    addBtn.addEventListener('click', async () => {
+      const item = itemSelect.value;
+      const qty = parseInt(qtyInput.value);
+      const minutes = parseInt(timeInput.value);
+
+      if (!qty || qty < 1) {
+        alert('Quantity must be at least 1');
+        return;
+      }
+
+      if (!minutes || minutes < 1) {
+        alert('Time must be at least 1 minute');
+        return;
+      }
+
+      const readyAt = Date.now() + minutes * 60 * 1000;
+
+      await push(ordersRef, {
+        item,
+        qty,
+        readyAt,
+        createdAt: Date.now()
+      });
+    });
+
+
+    // LIVE ORDERS
     onValue(ordersRef, (snapshot) => {
       const data = snapshot.val() || {};
 
-      items.forEach((_, index) => {
-        const qty = data[index] || 0;
-
-        document.getElementById(`qty-${index}`).innerText = qty;
-      });
+      renderOrders(data);
+      renderSummary(data);
     });
 
-    // Update quantity
-    async function changeQty(index, delta) {
-      const current = parseInt(
-        document.getElementById(`qty-${index}`).innerText
-      );
 
-      const newQty = Math.max(0, current + delta);
+    // RENDER ORDERS
+    function renderOrders(data) {
+      ordersContainer.innerHTML = '';
 
-      await set(ref(db, `orders/${index}`), newQty);
+      const entries = Object.entries(data)
+        .sort((a, b) => a[1].readyAt - b[1].readyAt);
+
+      entries.forEach(([id, order]) => {
+        const card = document.createElement('div');
+
+        card.className =
+          'bg-gray-50 border rounded-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3';
+
+        card.innerHTML = `
+          <div>
+            <div class="text-xl font-bold">
+              ${order.item}
+            </div>
+
+            <div class="text-lg">
+              Qty: ${order.qty}
+            </div>
+          </div>
+
+          <div class="text-center">
+            <div class="text-sm text-gray-500 mb-1">
+              Ready In
+            </div>
+
+            <div
+              id="timer-${id}"
+              class="text-2xl font-bold"
+            ></div>
+          </div>
+
+          <button
+            class="deleteBtn bg-red-500 text-white px-4 py-2 rounded font-bold"
+            data-id="${id}"
+          >
+            Done
+          </button>
+        `;
+
+        ordersContainer.appendChild(card);
+
+        startCountdown(id, order.readyAt);
+      });
+
+
+      document.querySelectorAll('.deleteBtn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.dataset.id;
+
+          await remove(ref(db, `orders/${id}`));
+        });
+      });
+    }
+
+
+    // COUNTDOWN
+    function startCountdown(id, readyAt) {
+      const el = document.getElementById(`timer-${id}`);
+
+      function update() {
+        const diff = readyAt - Date.now();
+
+        if (diff <= 0) {
+          el.innerHTML = '<span class="text-red-600">READY</span>';
+          return;
+        }
+
+        const minutes = Math.floor(diff / 1000 / 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        el.innerText = `${minutes}m ${seconds}s`;
+      }
+
+      update();
+
+      setInterval(update, 1000);
+    }
+
+
+    // NEXT 15 MIN SUMMARY
+    function renderSummary(data) {
+      summaryContainer.innerHTML = '';
+
+      const totals = {};
+
+      const now = Date.now();
+      const next15 = now + 15 * 60 * 1000;
+
+      Object.values(data).forEach(order => {
+        if (order.readyAt <= next15) {
+          totals[order.item] =
+            (totals[order.item] || 0) + order.qty;
+        }
+      });
+
+      Object.entries(totals).forEach(([item, qty]) => {
+        const card = document.createElement('div');
+
+        card.className =
+          'bg-orange-100 rounded-xl p-3 text-center';
+
+        card.innerHTML = `
+          <div class="font-bold text-sm mb-1">
+            ${item}
+          </div>
+
+          <div class="text-3xl font-bold">
+            ${qty}
+          </div>
+        `;
+
+        summaryContainer.appendChild(card);
+      });
+
+      if (Object.keys(totals).length === 0) {
+        summaryContainer.innerHTML = `
+          <div class="text-gray-500">
+            No items due in next 15 minutes.
+          </div>
+        `;
+      }
     }
   </script>
 </body>
