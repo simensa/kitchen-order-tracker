@@ -26,11 +26,11 @@
 
         <div>
           <label class="font-bold text-sm block mb-1">
-            KFC - BL
+            Boneless
           </label>
 
           <input
-            id="kfcbl"
+            id="boneless"
             type="number"
             min="0"
             value="0"
@@ -40,11 +40,11 @@
 
         <div>
           <label class="font-bold text-sm block mb-1">
-            KFC - 8
+            Half Boneless
           </label>
 
           <input
-            id="kfc8"
+            id="halfboneless"
             type="number"
             min="0"
             value="0"
@@ -54,11 +54,11 @@
 
         <div>
           <label class="font-bold text-sm block mb-1">
-            KFC - 4
+            8 Wings
           </label>
 
           <input
-            id="kfc4"
+            id="wings8"
             type="number"
             min="0"
             value="0"
@@ -68,18 +68,90 @@
 
         <div>
           <label class="font-bold text-sm block mb-1">
-            Beef
+            4 Wings
           </label>
 
           <input
-            id="beef"
+            id="wings4"
             type="number"
             min="0"
             value="0"
             class="border rounded p-2 w-full"
           />
         </div>
-      </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Beef bulgogi
+            </label>
+
+            <input
+              id="beefbulgogi"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Jeyuk
+            </label>
+
+            <input
+              id="jeyuk"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Bibimbap
+            </label>
+
+            <input
+              id="bibimbap"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Bulgogi Japche
+            </label>
+
+            <input
+              id="bulgogijapche"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Japche
+            </label>
+
+            <input
+              id="japche"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
+        </div>
 
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -165,10 +237,15 @@
     addBtn.addEventListener('click', async () => {
 
       const items = {
-        'KFC - BL': parseInt(document.getElementById('kfcbl').value) || 0,
-        'KFC - 8': parseInt(document.getElementById('kfc8').value) || 0,
-        'KFC - 4': parseInt(document.getElementById('kfc4').value) || 0,
-        'Beef': parseInt(document.getElementById('beef').value) || 0,
+        'Boneless': parseInt(document.getElementById('boneless').value) || 0,
+        'Half Boneless': parseInt(document.getElementById('halfboneless').value) || 0,
+        '8 Wings': parseInt(document.getElementById('wings8').value) || 0,
+        '4 Wings': parseInt(document.getElementById('wings4').value) || 0,
+        'Beef bulgogi': parseInt(document.getElementById('beefbulgogi').value) || 0,
+        'Jeyuk': parseInt(document.getElementById('jeyuk').value) || 0,
+        'Bibimbap': parseInt(document.getElementById('bibimbap').value) || 0,
+        'Bulgogi Japche': parseInt(document.getElementById('bulgogijapche').value) || 0,
+        'Japche': parseInt(document.getElementById('japche').value) || 0,
       };
 
       const totalQty = Object.values(items)
@@ -198,10 +275,15 @@
 
 
       // RESET INPUTS
-      document.getElementById('kfcbl').value = 0;
-      document.getElementById('kfc8').value = 0;
-      document.getElementById('kfc4').value = 0;
-      document.getElementById('beef').value = 0;
+      document.getElementById('boneless').value = 0;
+      document.getElementById('halfboneless').value = 0;
+      document.getElementById('wings8').value = 0;
+      document.getElementById('wings4').value = 0;
+      document.getElementById('beefbulgogi').value = 0;
+      document.getElementById('jeyuk').value = 0;
+      document.getElementById('bibimbap').value = 0;
+      document.getElementById('bulgogijapche').value = 0;
+      document.getElementById('japche').value = 0;
     });
 
 
@@ -316,10 +398,15 @@
       summaryContainer.innerHTML = '';
 
       const totals = {
-        'KFC - BL': 0,
-        'KFC - 8': 0,
-        'KFC - 4': 0,
-        'Beef': 0
+        'Boneless': 0,
+        'Half Boneless': 0,
+        '8 Wings': 0,
+        '4 Wings': 0,
+        'Beef bulgogi': 0,
+        'Jeyuk': 0,
+        'Bibimbap': 0,
+        'Bulgogi Japche': 0,
+        'Japche': 0
       };
 
       const now = Date.now();
