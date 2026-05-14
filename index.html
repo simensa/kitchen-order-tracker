@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Kitchen Order Manager</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,29 +18,24 @@
 
     <!-- CREATE ORDER -->
     <div class="bg-white rounded-xl shadow p-4 mb-6">
-
       <h2 class="text-xl font-bold mb-4">
         Create Order
       </h2>
 
-
-      <!-- MENU ITEMS -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
 
         <div>
           <label class="font-bold text-sm block mb-1">
             Boneless
           </label>
 
-          <input
-            id="boneless"
-            type="number"
-            min="0"
-            value="0"
-            class="border rounded p-2 w-full"
-          />
+          <div class="flex items-center justify-center gap-2">
+            <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="boneless">−</button>
+            <div id="display-boneless" class="text-2xl font-bold w-8 text-center">0</div>
+            <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="boneless">+</button>
+          </div>
+          <input id="boneless" type="hidden" value="0" />
         </div>
-
 
         <div>
           <label class="font-bold text-sm block mb-1">
@@ -57,7 +51,6 @@
           />
         </div>
 
-
         <div>
           <label class="font-bold text-sm block mb-1">
             8 Wings
@@ -71,7 +64,6 @@
             class="border rounded p-2 w-full"
           />
         </div>
-
 
         <div>
           <label class="font-bold text-sm block mb-1">
@@ -87,85 +79,80 @@
           />
         </div>
 
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
 
-        <div>
-          <label class="font-bold text-sm block mb-1">
-            Beef bulgogi
-          </label>
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Beef bulgogi
+            </label>
 
-          <input
-            id="beefbulgogi"
-            type="number"
-            min="0"
-            value="0"
-            class="border rounded p-2 w-full"
-          />
+            <input
+              id="beefbulgogi"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Jeyuk
+            </label>
+
+            <input
+              id="jeyuk"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Bibimbap
+            </label>
+
+            <input
+              id="bibimbap"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Bulgogi Japche
+            </label>
+
+            <input
+              id="bulgogijapche"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-sm block mb-1">
+              Japche
+            </label>
+
+            <input
+              id="japche"
+              type="number"
+              min="0"
+              value="0"
+              class="border rounded p-2 w-full"
+            />
+          </div>
         </div>
 
 
-        <div>
-          <label class="font-bold text-sm block mb-1">
-            Jeyuk
-          </label>
-
-          <input
-            id="jeyuk"
-            type="number"
-            min="0"
-            value="0"
-            class="border rounded p-2 w-full"
-          />
-        </div>
-
-
-        <div>
-          <label class="font-bold text-sm block mb-1">
-            Bibimbap
-          </label>
-
-          <input
-            id="bibimbap"
-            type="number"
-            min="0"
-            value="0"
-            class="border rounded p-2 w-full"
-          />
-        </div>
-
-
-        <div>
-          <label class="font-bold text-sm block mb-1">
-            Bulgogi Japche
-          </label>
-
-          <input
-            id="bulgogijapche"
-            type="number"
-            min="0"
-            value="0"
-            class="border rounded p-2 w-full"
-          />
-        </div>
-
-
-        <div>
-          <label class="font-bold text-sm block mb-1">
-            Japche
-          </label>
-
-          <input
-            id="japche"
-            type="number"
-            min="0"
-            value="0"
-            class="border rounded p-2 w-full"
-          />
-        </div>
-
-      </div>
-
-
-      <!-- PICKUP TIME -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
         <input
@@ -183,46 +170,36 @@
         >
           Add Order
         </button>
-
       </div>
     </div>
 
 
-
     <!-- NEXT 15 MIN SUMMARY -->
     <div class="bg-white rounded-xl shadow p-4 mb-6">
-
       <h2 class="text-xl font-bold mb-4">
         Production Needed Next 15 Minutes
       </h2>
 
       <div
         id="summary"
-        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3"
+        class="grid grid-cols-2 md:grid-cols-4 gap-3"
       ></div>
-
     </div>
-
 
 
     <!-- ACTIVE ORDERS -->
     <div class="bg-white rounded-xl shadow p-4">
-
       <h2 class="text-xl font-bold mb-4">
         Active Orders
       </h2>
 
       <div id="ordersContainer" class="space-y-3"></div>
-
     </div>
   </div>
 
 
-
   <script type="module">
-
-    import { initializeApp }
-      from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
     import {
       getDatabase,
@@ -230,12 +207,9 @@
       push,
       onValue,
       remove
-    }
-      from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+    } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
 
-
-    // FIREBASE CONFIG
     const firebaseConfig = {
       apiKey: "AIzaSyAuxTOa79Q53VQ9-hFPVrbaopcUmb-k618",
       authDomain: "kitchen-tracker-6563e.firebaseapp.com",
@@ -247,58 +221,62 @@
     };
 
 
-
-    // INIT FIREBASE
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
     const ordersRef = ref(db, 'orders');
 
 
-
-    // ELEMENTS
     const addBtn = document.getElementById('addBtn');
     const ordersContainer = document.getElementById('ordersContainer');
     const summaryContainer = document.getElementById('summary');
 
+
+    // PLUS/MINUS BUTTONS
+    document.querySelectorAll('.plusBtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.target;
+        const input = document.getElementById(target);
+        const display = document.getElementById(`display-${target}`);
+
+        let value = parseInt(input.value) || 0;
+        value++;
+
+        input.value = value;
+        display.innerText = value;
+      });
+    });
+
+    document.querySelectorAll('.minusBtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.target;
+        const input = document.getElementById(target);
+        const display = document.getElementById(`display-${target}`);
+
+        let value = parseInt(input.value) || 0;
+        value = Math.max(0, value - 1);
+
+        input.value = value;
+        display.innerText = value;
+      });
+    });
 
 
     // ADD ORDER
     addBtn.addEventListener('click', async () => {
 
       const items = {
-
-        'Boneless':
-          parseInt(document.getElementById('boneless').value) || 0,
-
-        'Half Boneless':
-          parseInt(document.getElementById('halfboneless').value) || 0,
-
-        '8 Wings':
-          parseInt(document.getElementById('wings8').value) || 0,
-
-        '4 Wings':
-          parseInt(document.getElementById('wings4').value) || 0,
-
-        'Beef bulgogi':
-          parseInt(document.getElementById('beefbulgogi').value) || 0,
-
-        'Jeyuk':
-          parseInt(document.getElementById('jeyuk').value) || 0,
-
-        'Bibimbap':
-          parseInt(document.getElementById('bibimbap').value) || 0,
-
-        'Bulgogi Japche':
-          parseInt(document.getElementById('bulgogijapche').value) || 0,
-
-        'Japche':
-          parseInt(document.getElementById('japche').value) || 0,
+        'Boneless': parseInt(document.getElementById('boneless').value) || 0,
+        'Half Boneless': parseInt(document.getElementById('halfboneless').value) || 0,
+        '8 Wings': parseInt(document.getElementById('wings8').value) || 0,
+        '4 Wings': parseInt(document.getElementById('wings4').value) || 0,
+        'Beef bulgogi': parseInt(document.getElementById('beefbulgogi').value) || 0,
+        'Jeyuk': parseInt(document.getElementById('jeyuk').value) || 0,
+        'Bibimbap': parseInt(document.getElementById('bibimbap').value) || 0,
+        'Bulgogi Japche': parseInt(document.getElementById('bulgogijapche').value) || 0,
+        'Japche': parseInt(document.getElementById('japche').value) || 0,
       };
 
-
-
-      // CHECK IF ORDER HAS ITEMS
       const totalQty = Object.values(items)
         .reduce((sum, qty) => sum + qty, 0);
 
@@ -307,9 +285,6 @@
         return;
       }
 
-
-
-      // PICKUP TIME
       const minutes = parseInt(
         document.getElementById('timeInput').value
       );
@@ -319,20 +294,13 @@
         return;
       }
 
-
-
-      // CALCULATE READY TIME
       const readyAt = Date.now() + minutes * 60 * 1000;
 
-
-
-      // SAVE ORDER
       await push(ordersRef, {
         items,
         readyAt,
         createdAt: Date.now()
       });
-
 
 
       // RESET INPUTS
@@ -345,48 +313,37 @@
       document.getElementById('bibimbap').value = 0;
       document.getElementById('bulgogijapche').value = 0;
       document.getElementById('japche').value = 0;
-
     });
 
 
-
-    // REALTIME UPDATES
+    // LIVE UPDATES
     onValue(ordersRef, (snapshot) => {
-
       const data = snapshot.val() || {};
 
       renderOrders(data);
       renderSummary(data);
-
     });
-
 
 
     // RENDER ORDERS
     function renderOrders(data) {
-
       ordersContainer.innerHTML = '';
 
       const entries = Object.entries(data)
         .sort((a, b) => a[1].readyAt - b[1].readyAt);
 
 
-
       entries.forEach(([id, order]) => {
 
         const itemLines = Object.entries(order.items)
-
           .filter(([_, qty]) => qty > 0)
-
           .map(([name, qty]) => `
             <div class="flex justify-between border-b py-1">
               <span>${name}</span>
               <span class="font-bold">${qty}</span>
             </div>
           `)
-
           .join('');
-
 
 
         const card = document.createElement('div');
@@ -394,24 +351,18 @@
         card.className =
           'bg-gray-50 border rounded-xl p-4';
 
-
-
         card.innerHTML = `
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 
             <div class="flex-1">
-
               <div class="text-lg font-bold mb-2">
                 Order
               </div>
 
               ${itemLines}
-
             </div>
 
-
             <div class="text-center min-w-[140px]">
-
               <div class="text-sm text-gray-500 mb-1">
                 Pickup In
               </div>
@@ -420,9 +371,7 @@
                 id="timer-${id}"
                 class="text-3xl font-bold"
               ></div>
-
             </div>
-
 
             <button
               class="deleteBtn bg-green-600 text-white px-4 py-2 rounded font-bold"
@@ -430,79 +379,54 @@
             >
               Completed
             </button>
-
           </div>
         `;
-
-
 
         ordersContainer.appendChild(card);
 
         startCountdown(id, order.readyAt);
-
       });
 
 
-
-      // DELETE ORDER
       document.querySelectorAll('.deleteBtn').forEach(btn => {
-
         btn.addEventListener('click', async () => {
-
           const id = btn.dataset.id;
 
           await remove(ref(db, `orders/${id}`));
-
         });
-
       });
-
     }
-
 
 
     // TIMER
     function startCountdown(id, readyAt) {
-
       const el = document.getElementById(`timer-${id}`);
 
       function update() {
-
         const diff = readyAt - Date.now();
 
         if (diff <= 0) {
-
-          el.innerHTML =
-            '<span class="text-red-600">READY</span>';
-
+          el.innerHTML = '<span class="text-red-600">READY</span>';
           return;
         }
 
-        const minutes =
-          Math.floor(diff / 1000 / 60);
+        const minutes = Math.floor(diff / 1000 / 60);
+        const seconds = Math.floor((diff / 1000) % 60);
 
-        const seconds =
-          Math.floor((diff / 1000) % 60);
-
-        el.innerText =
-          `${minutes}m ${seconds}s`;
+        el.innerText = `${minutes}m ${seconds}s`;
       }
 
       update();
 
       setInterval(update, 1000);
-
     }
 
 
-
-    // NEXT 15 MIN SUMMARY
+    // SUMMARY NEXT 15 MIN
     function renderSummary(data) {
-
       summaryContainer.innerHTML = '';
 
       const totals = {
-
         'Boneless': 0,
         'Half Boneless': 0,
         '8 Wings': 0,
@@ -512,14 +436,10 @@
         'Bibimbap': 0,
         'Bulgogi Japche': 0,
         'Japche': 0
-
       };
-
-
 
       const now = Date.now();
       const next15 = now + 15 * 60 * 1000;
-
 
 
       Object.values(data).forEach(order => {
@@ -527,24 +447,17 @@
         if (order.readyAt <= next15) {
 
           Object.entries(order.items).forEach(([item, qty]) => {
-
             totals[item] += qty;
-
           });
         }
       });
 
 
-
-      // RENDER SUMMARY
       Object.entries(totals).forEach(([item, qty]) => {
-
         const card = document.createElement('div');
 
         card.className =
           'bg-orange-100 rounded-xl p-3 text-center';
-
-
 
         card.innerHTML = `
           <div class="font-bold text-sm mb-1">
@@ -557,11 +470,8 @@
         `;
 
         summaryContainer.appendChild(card);
-
       });
-
     }
-
   </script>
 </body>
 </html>
