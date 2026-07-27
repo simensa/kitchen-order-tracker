@@ -15,141 +15,312 @@
       Kitchen Order Manager
     </h1>
 
-
     <!-- CREATE ORDER -->
-<div class="bg-white rounded-xl shadow p-4 mb-6">
-  <h2 class="text-xl font-bold mb-4">Create Order</h2>
+    <div class="bg-white rounded-xl shadow p-4 mb-6">
+      <h2 class="text-xl font-bold mb-4">Create Order</h2>
 
-  <!-- GRID 1 -->
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <!-- GRID 1 -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
 
-    <!-- Boneless -->
-    <div>
-      <label class="font-bold text-sm block mb-1">Boneless</label>
-      <div class="flex items-center justify-center gap-2">
-        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="boneless">−</button>
-        <div id="display-boneless" class="text-2xl font-bold w-8 text-center">0</div>
-        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="boneless">+</button>
+        <!-- Boneless -->
+        <div>
+          <label class="font-bold text-sm block mb-1">Boneless</label>
+          <div class="flex items-center justify-center gap-2">
+            <button
+              class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
+              data-target="boneless"
+            >
+              −
+            </button>
+
+            <div
+              id="display-boneless"
+              class="text-2xl font-bold w-8 text-center"
+            >
+              0
+            </div>
+
+            <button
+              class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold"
+              data-target="boneless"
+            >
+              +
+            </button>
+          </div>
+
+          <input id="boneless" type="hidden" value="0" />
+        </div>
+
+        <!-- Half Boneless -->
+        <div>
+          <label class="font-bold text-sm block mb-1">
+            Half Boneless
+          </label>
+
+          <div class="flex items-center justify-center gap-2">
+            <button
+              class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
+              data-target="halfboneless"
+            >
+              −
+            </button>
+
+            <div
+              id="display-halfboneless"
+              class="text-2xl font-bold w-8 text-center"
+            >
+              0
+            </div>
+
+            <button
+              class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold"
+              data-target="halfboneless"
+            >
+              +
+            </button>
+          </div>
+
+          <input id="halfboneless" type="hidden" value="0" />
+        </div>
+
+        <!-- 8 Wings -->
+        <div>
+          <label class="font-bold text-sm block mb-1">8 Wings</label>
+
+          <div class="flex items-center justify-center gap-2">
+            <button
+              class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
+              data-target="wings8"
+            >
+              −
+            </button>
+
+            <div
+              id="display-wings8"
+              class="text-2xl font-bold w-8 text-center"
+            >
+              0
+            </div>
+
+            <button
+              class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold"
+              data-target="wings8"
+            >
+              +
+            </button>
+          </div>
+
+          <input id="wings8" type="hidden" value="0" />
+        </div>
+
+        <!-- 4 Wings -->
+        <div>
+          <label class="font-bold text-sm block mb-1">4 Wings</label>
+
+          <div class="flex items-center justify-center gap-2">
+            <button
+              class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
+              data-target="wings4"
+            >
+              −
+            </button>
+
+            <div
+              id="display-wings4"
+              class="text-2xl font-bold w-8 text-center"
+            >
+              0
+            </div>
+
+            <button
+              class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold"
+              data-target="wings4"
+            >
+              +
+            </button>
+          </div>
+
+          <input id="wings4" type="hidden" value="0" />
+        </div>
       </div>
-      <input id="boneless" type="hidden" value="0" />
-    </div>
 
-    <!-- Half Boneless -->
-    <div>
-      <label class="font-bold text-sm block mb-1">Half Boneless</label>
-      <div class="flex items-center justify-center gap-2">
-        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="halfboneless">−</button>
-        <div id="display-halfboneless" class="text-2xl font-bold w-8 text-center">0</div>
-        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="halfboneless">+</button>
+      <!-- GRID 2 -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+
+        <!-- Beef Bulgogi -->
+        <div>
+          <label class="font-bold text-sm block mb-1">
+            Beef Bulgogi
+          </label>
+
+          <div class="flex items-center justify-center gap-2">
+            <button
+              class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
+              data-target="beefbulgogi"
+            >
+              −
+            </button>
+
+            <div
+              id="display-beefbulgogi"
+              class="text-2xl font-bold w-8 text-center"
+            >
+              0
+            </div>
+
+            <button
+              class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold"
+              data-target="beefbulgogi"
+            >
+              +
+            </button>
+          </div>
+
+          <input id="beefbulgogi" type="hidden" value="0" />
+        </div>
+
+        <!-- Jeyuk -->
+        <div>
+          <label class="font-bold text-sm block mb-1">Jeyuk</label>
+
+          <div class="flex items-center justify-center gap-2">
+            <button
+              class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
+              data-target="jeyuk"
+            >
+              −
+            </button>
+
+            <div
+              id="display-jeyuk"
+              class="text-2xl font-bold w-8 text-center"
+            >
+              0
+            </div>
+
+            <button
+              class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold"
+              data-target="jeyuk"
+            >
+              +
+            </button>
+          </div>
+
+          <input id="jeyuk" type="hidden" value="0" />
+        </div>
+
+        <!-- Bibimbap -->
+        <div>
+          <label class="font-bold text-sm block mb-1">Bibimbap</label>
+
+          <div class="flex items-center justify-center gap-2">
+            <button
+              class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
+              data-target="bibimbap"
+            >
+              −
+            </button>
+
+            <div
+              id="display-bibimbap"
+              class="text-2xl font-bold w-8 text-center"
+            >
+              0
+            </div>
+
+            <button
+              class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold"
+              data-target="bibimbap"
+            >
+              +
+            </button>
+          </div>
+
+          <input id="bibimbap" type="hidden" value="0" />
+        </div>
+
+        <!-- Bulgogi Japche -->
+        <div>
+          <label class="font-bold text-sm block mb-1">
+            Bulgogi Japche
+          </label>
+
+          <div class="flex items-center justify-center gap-2">
+            <button
+              class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
+              data-target="bulgogijapche"
+            >
+              −
+            </button>
+
+            <div
+              id="display-bulgogijapche"
+              class="text-2xl font-bold w-8 text-center"
+            >
+              0
+            </div>
+
+            <button
+              class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold"
+              data-target="bulgogijapche"
+            >
+              +
+            </button>
+          </div>
+
+          <input id="bulgogijapche" type="hidden" value="0" />
+        </div>
+
+        <!-- Japche -->
+        <div>
+          <label class="font-bold text-sm block mb-1">Japche</label>
+
+          <div class="flex items-center justify-center gap-2">
+            <button
+              class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
+              data-target="japche"
+            >
+              −
+            </button>
+
+            <div
+              id="display-japche"
+              class="text-2xl font-bold w-8 text-center"
+            >
+              0
+            </div>
+
+            <button
+              class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold"
+              data-target="japche"
+            >
+              +
+            </button>
+          </div>
+
+          <input id="japche" type="hidden" value="0" />
+        </div>
       </div>
-      <input id="halfboneless" type="hidden" value="0" />
-    </div>
 
-    <!-- 8 Wings -->
-    <div>
-      <label class="font-bold text-sm block mb-1">8 Wings</label>
-      <div class="flex items-center justify-center gap-2">
-        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="wings8">−</button>
-        <div id="display-wings8" class="text-2xl font-bold w-8 text-center">0</div>
-        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="wings8">+</button>
+      <!-- GRID 3 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <input
+          id="timeInput"
+          type="number"
+          min="1"
+          value="15"
+          class="border rounded p-2"
+          placeholder="Pickup in minutes"
+        />
+
+        <button
+          id="addBtn"
+          class="bg-orange-500 text-white rounded p-2 font-bold disabled:opacity-50"
+        >
+          Add Order
+        </button>
       </div>
-      <input id="wings8" type="hidden" value="0" />
     </div>
-
-    <!-- 4 Wings -->
-    <div>
-      <label class="font-bold text-sm block mb-1">4 Wings</label>
-      <div class="flex items-center justify-center gap-2">
-        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="wings4">−</button>
-        <div id="display-wings4" class="text-2xl font-bold w-8 text-center">0</div>
-        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="wings4">+</button>
-      </div>
-      <input id="wings4" type="hidden" value="0" />
-    </div>
-
-  </div>
-
-  <!-- GRID 2 -->
-  <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
-
-    <!-- Beef Bulgogi -->
-    <div>
-      <label class="font-bold text-sm block mb-1">Beef Bulgogi</label>
-      <div class="flex items-center justify-center gap-2">
-        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="beefbulgogi">−</button>
-        <div id="display-beefbulgogi" class="text-2xl font-bold w-8 text-center">0</div>
-        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="beefbulgogi">+</button>
-      </div>
-      <input id="beefbulgogi" type="hidden" value="0" />
-    </div>
-
-    <!-- Jeyuk -->
-    <div>
-      <label class="font-bold text-sm block mb-1">Jeyuk</label>
-      <div class="flex items-center justify-center gap-2">
-        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="jeyuk">−</button>
-        <div id="display-jeyuk" class="text-2xl font-bold w-8 text-center">0</div>
-        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="jeyuk">+</button>
-      </div>
-      <input id="jeyuk" type="hidden" value="0" />
-    </div>
-
-    <!-- Bibimbap -->
-    <div>
-      <label class="font-bold text-sm block mb-1">Bibimbap</label>
-      <div class="flex items-center justify-center gap-2">
-        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="bibimbap">−</button>
-        <div id="display-bibimbap" class="text-2xl font-bold w-8 text-center">0</div>
-        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="bibimbap">+</button>
-      </div>
-      <input id="bibimbap" type="hidden" value="0" />
-    </div>
-
-    <!-- Bulgogi Japche -->
-    <div>
-      <label class="font-bold text-sm block mb-1">Bulgogi Japche</label>
-      <div class="flex items-center justify-center gap-2">
-        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="bulgogijapche">−</button>
-        <div id="display-bulgogijapche" class="text-2xl font-bold w-8 text-center">0</div>
-        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="bulgogijapche">+</button>
-      </div>
-      <input id="bulgogijapche" type="hidden" value="0" />
-    </div>
-
-    <!-- Japche -->
-    <div>
-      <label class="font-bold text-sm block mb-1">Japche</label>
-      <div class="flex items-center justify-center gap-2">
-        <button class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold" data-target="japche">−</button>
-        <div id="display-japche" class="text-2xl font-bold w-8 text-center">0</div>
-        <button class="plusBtn bg-orange-500 text-white w-8 h-8 rounded font-bold" data-target="japche">+</button>
-      </div>
-      <input id="japche" type="hidden" value="0" />
-    </div>
-
-  </div>
-
-  <!-- GRID 3 -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-
-    <input
-      id="timeInput"
-      type="number"
-      min="1"
-      value="15"
-      class="border rounded p-2"
-      placeholder="Pickup in minutes"
-    />
-
-    <button
-      id="addBtn"
-      class="bg-orange-500 text-white rounded p-2 font-bold"
-    >
-      Add Order
-    </button>
-
-  </div>
-</div>
 
     <!-- NEXT 15 MIN SUMMARY -->
     <div class="bg-white rounded-xl shadow p-4 mb-6">
@@ -163,20 +334,23 @@
       ></div>
     </div>
 
-
     <!-- ACTIVE ORDERS -->
     <div class="bg-white rounded-xl shadow p-4">
       <h2 class="text-xl font-bold mb-4">
         Active Orders
       </h2>
 
-      <div id="ordersContainer" class="space-y-3"></div>
+      <div
+        id="ordersContainer"
+        class="space-y-3"
+      ></div>
     </div>
   </div>
 
-
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
     import {
       getDatabase,
@@ -186,144 +360,592 @@
       remove
     } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
+    // =========================
+    // FIREBASE
+    // =========================
 
     const firebaseConfig = {
-      apiKey: "AIzaSyAuxTOa79Q53VQ9-hFPVrbaopcUmb-k618",
-      authDomain: "kitchen-tracker-6563e.firebaseapp.com",
-      databaseURL: "https://kitchen-tracker-6563e-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "kitchen-tracker-6563e",
-      storageBucket: "kitchen-tracker-6563e.firebasestorage.app",
-      messagingSenderId: "910563195014",
-      appId: "1:910563195014:web:7c826936ec28edfa273907"
-    };
+      apiKey:
+        "AIzaSyAuxTOa79Q53VQ9-hFPVrbaopcUmb-k618",
 
+      authDomain:
+        "kitchen-tracker-6563e.firebaseapp.com",
+
+      databaseURL:
+        "https://kitchen-tracker-6563e-default-rtdb.europe-west1.firebasedatabase.app",
+
+      projectId:
+        "kitchen-tracker-6563e",
+
+      storageBucket:
+        "kitchen-tracker-6563e.firebasestorage.app",
+
+      messagingSenderId:
+        "910563195014",
+
+      appId:
+        "1:910563195014:web:7c826936ec28edfa273907"
+    };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
     const ordersRef = ref(db, 'orders');
 
+    // =========================
+    // DOM REFERENCES
+    // =========================
 
-    const addBtn = document.getElementById('addBtn');
-    const ordersContainer = document.getElementById('ordersContainer');
-    const summaryContainer = document.getElementById('summary');
+    const addBtn =
+      document.getElementById('addBtn');
 
-
-    // PLUS/MINUS BUTTONS
-    document.querySelectorAll('.plusBtn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.dataset.target;
-        const input = document.getElementById(target);
-        const display = document.getElementById(`display-${target}`);
-
-        let value = parseInt(input.value) || 0;
-        value++;
-
-        input.value = value;
-        display.innerText = value;
-      });
-    });
-
-    document.querySelectorAll('.minusBtn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.dataset.target;
-        const input = document.getElementById(target);
-        const display = document.getElementById(`display-${target}`);
-
-        let value = parseInt(input.value) || 0;
-        value = Math.max(0, value - 1);
-
-        input.value = value;
-        display.innerText = value;
-      });
-    });
-
-
-    // ADD ORDER
-    addBtn.addEventListener('click', async () => {
-
-      const items = {
-        'Boneless': parseInt(document.getElementById('boneless').value) || 0,
-        'Half Boneless': parseInt(document.getElementById('halfboneless').value) || 0,
-        '8 Wings': parseInt(document.getElementById('wings8').value) || 0,
-        '4 Wings': parseInt(document.getElementById('wings4').value) || 0,
-        'Beef bulgogi': parseInt(document.getElementById('beefbulgogi').value) || 0,
-        'Jeyuk': parseInt(document.getElementById('jeyuk').value) || 0,
-        'Bibimbap': parseInt(document.getElementById('bibimbap').value) || 0,
-        'Bulgogi Japche': parseInt(document.getElementById('bulgogijapche').value) || 0,
-        'Japche': parseInt(document.getElementById('japche').value) || 0,
-      };
-
-      const totalQty = Object.values(items)
-        .reduce((sum, qty) => sum + qty, 0);
-
-      if (totalQty === 0) {
-        alert('Add at least one item');
-        return;
-      }
-
-      const minutes = parseInt(
-        document.getElementById('timeInput').value
+    const ordersContainer =
+      document.getElementById(
+        'ordersContainer'
       );
 
-      if (!minutes || minutes < 1) {
-        alert('Pickup time must be at least 1 minute');
-        return;
+    const summaryContainer =
+      document.getElementById(
+        'summary'
+      );
+
+    // =========================
+    // CONSTANTS
+    // =========================
+
+    const KITCHEN_ITEMS = [
+      'Boneless',
+      'Half Boneless',
+      '8 Wings',
+      '4 Wings',
+      'Beef bulgogi',
+      'Jeyuk',
+      'Bibimbap',
+      'Bulgogi Japche',
+      'Japche'
+    ];
+
+    const SOURCE_LABELS = {
+      foodora: 'Foodora',
+      wolt: 'Wolt',
+      munu: 'Munu',
+      manual: 'Manual'
+    };
+
+    const SOURCE_BADGE_CLASSES = {
+      foodora:
+        'bg-pink-100 text-pink-800',
+
+      wolt:
+        'bg-blue-100 text-blue-800',
+
+      munu:
+        'bg-purple-100 text-purple-800',
+
+      manual:
+        'bg-gray-200 text-gray-800'
+    };
+
+    // =========================
+    // GENERAL HELPERS
+    // =========================
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function getOrderSource(order) {
+      return String(
+        order.source ||
+        order.platform ||
+        'manual'
+      ).toLowerCase();
+    }
+
+    function getSourceLabel(source) {
+      return (
+        SOURCE_LABELS[source] ||
+        source ||
+        'Unknown'
+      );
+    }
+
+    function getSourceBadgeClass(source) {
+      return (
+        SOURCE_BADGE_CLASSES[source] ||
+        'bg-gray-200 text-gray-800'
+      );
+    }
+
+    function getOrderNumber(order) {
+      return (
+        order.orderNumber ||
+        order.externalOrderId ||
+        order.orderId ||
+        null
+      );
+    }
+
+    function formatReadyTime(readyAt) {
+      const milliseconds =
+        Number(readyAt);
+
+      if (
+        !Number.isFinite(milliseconds)
+      ) {
+        return 'Unknown time';
       }
 
-      const readyAt = Date.now() + minutes * 60 * 1000;
+      return new Date(
+        milliseconds
+      ).toLocaleTimeString(
+        'no-NO',
+        {
+          timeZone: 'Europe/Oslo',
+          hour: '2-digit',
+          minute: '2-digit'
+        }
+      );
+    }
 
-      await push(ordersRef, {
-        items,
-        readyAt,
-        createdAt: Date.now()
+    function resetManualOrderInputs() {
+      document.querySelectorAll(
+        '#boneless, ' +
+        '#halfboneless, ' +
+        '#wings8, ' +
+        '#wings4, ' +
+        '#beefbulgogi, ' +
+        '#jeyuk, ' +
+        '#bibimbap, ' +
+        '#bulgogijapche, ' +
+        '#japche'
+      ).forEach(input => {
+        input.value = 0;
       });
 
+      document
+        .querySelectorAll(
+          '[id^="display-"]'
+        )
+        .forEach(display => {
+          display.innerText = '0';
+        });
+    }
 
-      // RESET INPUTS
-      document.getElementById('boneless').value = 0;
-      document.getElementById('halfboneless').value = 0;
-      document.getElementById('wings8').value = 0;
-      document.getElementById('wings4').value = 0;
-      document.getElementById('beefbulgogi').value = 0;
-      document.getElementById('jeyuk').value = 0;
-      document.getElementById('bibimbap').value = 0;
-      document.getElementById('bulgogijapche').value = 0;
-      document.getElementById('japche').value = 0;
-    });
+    // =========================
+    // PLUS/MINUS BUTTONS
+    // =========================
 
+    document
+      .querySelectorAll('.plusBtn')
+      .forEach(btn => {
+        btn.addEventListener(
+          'click',
+          () => {
+            const target =
+              btn.dataset.target;
 
-    // LIVE UPDATES
-    onValue(ordersRef, (snapshot) => {
-      const data = snapshot.val() || {};
+            const input =
+              document.getElementById(
+                target
+              );
 
-      renderOrders(data);
-      renderSummary(data);
-    });
+            const display =
+              document.getElementById(
+                `display-${target}`
+              );
 
+            let value =
+              parseInt(
+                input.value,
+                10
+              ) || 0;
 
-    // RENDER ORDERS
+            value += 1;
+
+            input.value = value;
+            display.innerText = value;
+          }
+        );
+      });
+
+    document
+      .querySelectorAll('.minusBtn')
+      .forEach(btn => {
+        btn.addEventListener(
+          'click',
+          () => {
+            const target =
+              btn.dataset.target;
+
+            const input =
+              document.getElementById(
+                target
+              );
+
+            const display =
+              document.getElementById(
+                `display-${target}`
+              );
+
+            let value =
+              parseInt(
+                input.value,
+                10
+              ) || 0;
+
+            value = Math.max(
+              0,
+              value - 1
+            );
+
+            input.value = value;
+            display.innerText = value;
+          }
+        );
+      });
+
+    // =========================
+    // ADD MANUAL ORDER
+    // =========================
+
+    addBtn.addEventListener(
+      'click',
+      async () => {
+        const items = {
+          'Boneless':
+            parseInt(
+              document
+                .getElementById(
+                  'boneless'
+                )
+                .value,
+              10
+            ) || 0,
+
+          'Half Boneless':
+            parseInt(
+              document
+                .getElementById(
+                  'halfboneless'
+                )
+                .value,
+              10
+            ) || 0,
+
+          '8 Wings':
+            parseInt(
+              document
+                .getElementById(
+                  'wings8'
+                )
+                .value,
+              10
+            ) || 0,
+
+          '4 Wings':
+            parseInt(
+              document
+                .getElementById(
+                  'wings4'
+                )
+                .value,
+              10
+            ) || 0,
+
+          'Beef bulgogi':
+            parseInt(
+              document
+                .getElementById(
+                  'beefbulgogi'
+                )
+                .value,
+              10
+            ) || 0,
+
+          'Jeyuk':
+            parseInt(
+              document
+                .getElementById(
+                  'jeyuk'
+                )
+                .value,
+              10
+            ) || 0,
+
+          'Bibimbap':
+            parseInt(
+              document
+                .getElementById(
+                  'bibimbap'
+                )
+                .value,
+              10
+            ) || 0,
+
+          'Bulgogi Japche':
+            parseInt(
+              document
+                .getElementById(
+                  'bulgogijapche'
+                )
+                .value,
+              10
+            ) || 0,
+
+          'Japche':
+            parseInt(
+              document
+                .getElementById(
+                  'japche'
+                )
+                .value,
+              10
+            ) || 0
+        };
+
+        const totalQty =
+          Object.values(items)
+            .reduce(
+              (sum, qty) =>
+                sum + qty,
+              0
+            );
+
+        if (totalQty === 0) {
+          alert(
+            'Add at least one item'
+          );
+
+          return;
+        }
+
+        const minutes =
+          parseInt(
+            document
+              .getElementById(
+                'timeInput'
+              )
+              .value,
+            10
+          );
+
+        if (
+          !minutes ||
+          minutes < 1
+        ) {
+          alert(
+            'Pickup time must be at least 1 minute'
+          );
+
+          return;
+        }
+
+        const now = Date.now();
+
+        const readyAt =
+          now +
+          minutes *
+          60 *
+          1000;
+
+        addBtn.disabled = true;
+        addBtn.innerText =
+          'Adding...';
+
+        try {
+          await push(
+            ordersRef,
+            {
+              source:
+                'manual',
+
+              externalOrderId:
+                null,
+
+              orderNumber:
+                null,
+
+              kitchenStatus:
+                'active',
+
+              platformStatus:
+                null,
+
+              items,
+              readyAt,
+              createdAt:
+                now,
+
+              updatedAt:
+                now
+            }
+          );
+
+          resetManualOrderInputs();
+        } catch (error) {
+          console.error(
+            'Could not add manual order:',
+            error
+          );
+
+          alert(
+            'Could not add order. Please try again.'
+          );
+        } finally {
+          addBtn.disabled = false;
+
+          addBtn.innerText =
+            'Add Order';
+        }
+      }
+    );
+
+    // =========================
+    // LIVE FIREBASE UPDATES
+    // =========================
+
+    onValue(
+      ordersRef,
+
+      snapshot => {
+        const data =
+          snapshot.val() || {};
+
+        renderOrders(data);
+        renderSummary(data);
+      },
+
+      error => {
+        console.error(
+          'Firebase listener error:',
+          error
+        );
+      }
+    );
+
+    // =========================
+    // RENDER ACTIVE ORDERS
+    // =========================
+
     function renderOrders(data) {
       ordersContainer.innerHTML = '';
 
-      const entries = Object.entries(data)
-        .sort((a, b) => a[1].readyAt - b[1].readyAt);
+      const entries =
+        Object.entries(data)
+          .filter(
+            ([_, order]) => {
+              return (
+                order &&
+                typeof order ===
+                  'object'
+              );
+            }
+          )
+          .sort(
+            (a, b) => {
+              return (
+                Number(
+                  a[1].readyAt || 0
+                ) -
+                Number(
+                  b[1].readyAt || 0
+                )
+              );
+            }
+          );
 
+      if (
+        entries.length === 0
+      ) {
+        ordersContainer.innerHTML = `
+          <div class="text-center text-gray-500 py-8">
+            No active orders
+          </div>
+        `;
 
-      entries.forEach(([id, order]) => {
+        return;
+      }
 
-        const itemLines = Object.entries(order.items)
-          .filter(([_, qty]) => qty > 0)
-          .map(([name, qty]) => `
-            <div class="flex justify-between border-b py-1">
-              <span>${name}</span>
-              <span class="font-bold">${qty}</span>
-            </div>
-          `)
-          .join('');
+      for (
+        const [id, order]
+        of entries
+      ) {
+        const source =
+          getOrderSource(order);
 
+        const sourceLabel =
+          getSourceLabel(source);
 
-        const card = document.createElement('div');
+        const sourceBadgeClass =
+          getSourceBadgeClass(
+            source
+          );
+
+        const orderNumber =
+          getOrderNumber(order);
+
+        const platformStatus =
+          order.platformStatus ||
+          null;
+
+        const itemLines =
+          Object.entries(
+            order.items || {}
+          )
+            .filter(
+              ([_, qty]) =>
+                Number(qty) > 0
+            )
+            .map(
+              ([name, qty]) => `
+                <div class="flex justify-between border-b py-1">
+                  <span>
+                    ${escapeHtml(name)}
+                  </span>
+
+                  <span class="font-bold">
+                    ${Number(qty)}
+                  </span>
+                </div>
+              `
+            )
+            .join('');
+
+        const orderTitle =
+          orderNumber
+            ? (
+                `${escapeHtml(
+                  sourceLabel
+                )} #${escapeHtml(
+                  orderNumber
+                )}`
+              )
+            : escapeHtml(
+                sourceLabel
+              );
+
+        const statusLine =
+          platformStatus
+            ? `
+              <div class="text-xs text-gray-500 mt-1">
+                Platform status:
+                ${escapeHtml(
+                  platformStatus
+                )}
+              </div>
+            `
+            : '';
+
+        const card =
+          document.createElement(
+            'div'
+          );
 
         card.className =
           'bg-gray-50 border rounded-xl p-4';
@@ -332,11 +954,37 @@
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 
             <div class="flex-1">
-              <div class="text-lg font-bold mb-2">
-                Order
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <div class="text-lg font-bold">
+                  ${orderTitle}
+                </div>
+
+                <span
+                  class="text-xs font-bold px-2 py-1 rounded-full ${sourceBadgeClass}"
+                >
+                  ${escapeHtml(
+                    sourceLabel
+                  )}
+                </span>
               </div>
 
-              ${itemLines}
+              <div class="text-sm text-gray-500 mb-2">
+                Ready at
+                ${escapeHtml(
+                  formatReadyTime(
+                    order.readyAt
+                  )
+                )}
+              </div>
+
+              ${statusLine}
+
+              <div class="mt-3">
+                ${
+                  itemLines ||
+                  '<div class="text-gray-500">No mapped kitchen items</div>'
+                }
+              </div>
             </div>
 
             <div class="text-center min-w-[140px]">
@@ -345,109 +993,228 @@
               </div>
 
               <div
-                id="timer-${id}"
-                class="text-3xl font-bold"
+                id="timer-${escapeHtml(id)}"
+                class="orderTimer text-3xl font-bold"
+                data-ready-at="${
+                  Number(
+                    order.readyAt
+                  ) || 0
+                }"
               ></div>
             </div>
 
             <button
-              class="deleteBtn bg-green-600 text-white px-4 py-2 rounded font-bold"
-              data-id="${id}"
+              class="deleteBtn bg-green-600 text-white px-4 py-2 rounded font-bold disabled:opacity-50"
+              data-id="${escapeHtml(id)}"
             >
               Completed
             </button>
           </div>
         `;
 
-        ordersContainer.appendChild(card);
-
-        startCountdown(id, order.readyAt);
-      });
-
-
-      document.querySelectorAll('.deleteBtn').forEach(btn => {
-        btn.addEventListener('click', async () => {
-          const id = btn.dataset.id;
-
-          await remove(ref(db, `orders/${id}`));
-        });
-      });
-    }
-
-
-    // TIMER
-    function startCountdown(id, readyAt) {
-      const el = document.getElementById(`timer-${id}`);
-
-      function update() {
-        const diff = readyAt - Date.now();
-
-        if (diff <= 0) {
-          el.innerHTML = '<span class="text-red-600">READY</span>';
-          return;
-        }
-
-        const minutes = Math.floor(diff / 1000 / 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
-        el.innerText = `${minutes}m ${seconds}s`;
+        ordersContainer.appendChild(
+          card
+        );
       }
 
-      update();
+      document
+        .querySelectorAll(
+          '.deleteBtn'
+        )
+        .forEach(btn => {
+          btn.addEventListener(
+            'click',
+            async () => {
+              const id =
+                btn.dataset.id;
 
-      setInterval(update, 1000);
+              btn.disabled = true;
+
+              btn.innerText =
+                'Completing...';
+
+              try {
+                await remove(
+                  ref(
+                    db,
+                    `orders/${id}`
+                  )
+                );
+              } catch (error) {
+                console.error(
+                  'Could not complete order:',
+                  error
+                );
+
+                alert(
+                  'Could not complete order. Please try again.'
+                );
+
+                btn.disabled = false;
+
+                btn.innerText =
+                  'Completed';
+              }
+            }
+          );
+        });
+
+      updateAllCountdowns();
     }
 
+    // =========================
+    // ONE GLOBAL COUNTDOWN TIMER
+    // =========================
 
-    // SUMMARY NEXT 15 MIN
+    function updateAllCountdowns() {
+      document
+        .querySelectorAll(
+          '.orderTimer'
+        )
+        .forEach(timer => {
+          const readyAt =
+            Number(
+              timer.dataset.readyAt
+            );
+
+          if (
+            !Number.isFinite(
+              readyAt
+            ) ||
+            readyAt <= 0
+          ) {
+            timer.innerHTML =
+              '<span class="text-gray-500">--</span>';
+
+            return;
+          }
+
+          const diff =
+            readyAt -
+            Date.now();
+
+          if (diff <= 0) {
+            timer.innerHTML =
+              '<span class="text-red-600">READY</span>';
+
+            return;
+          }
+
+          const minutes =
+            Math.floor(
+              diff /
+              1000 /
+              60
+            );
+
+          const seconds =
+            Math.floor(
+              (
+                diff /
+                1000
+              ) % 60
+            );
+
+          timer.innerText =
+            `${minutes}m ${seconds}s`;
+        });
+    }
+
+    setInterval(
+      updateAllCountdowns,
+      1000
+    );
+
+    // =========================
+    // SUMMARY NEXT 15 MINUTES
+    // =========================
+
     function renderSummary(data) {
       summaryContainer.innerHTML = '';
 
-      const totals = {
-        'Boneless': 0,
-        'Half Boneless': 0,
-        '8 Wings': 0,
-        '4 Wings': 0,
-        'Beef bulgogi': 0,
-        'Jeyuk': 0,
-        'Bibimbap': 0,
-        'Bulgogi Japche': 0,
-        'Japche': 0
-      };
+      const totals =
+        Object.fromEntries(
+          KITCHEN_ITEMS.map(
+            item => [
+              item,
+              0
+            ]
+          )
+        );
 
       const now = Date.now();
-      const next15 = now + 15 * 60 * 1000;
 
+      const next15 =
+        now +
+        15 *
+        60 *
+        1000;
 
-      Object.values(data).forEach(order => {
+      Object.values(data)
+        .forEach(order => {
+          if (
+            !order ||
+            typeof order !==
+              'object'
+          ) {
+            return;
+          }
 
-        if (order.readyAt <= next15) {
+          const readyAt =
+            Number(
+              order.readyAt
+            );
 
-          Object.entries(order.items).forEach(([item, qty]) => {
-            totals[item] += qty;
-          });
-        }
-      });
+          if (
+            !Number.isFinite(
+              readyAt
+            ) ||
+            readyAt > next15
+          ) {
+            return;
+          }
 
+          Object.entries(
+            order.items || {}
+          ).forEach(
+            ([item, qty]) => {
+              if (
+                !(item in totals)
+              ) {
+                return;
+              }
 
-      Object.entries(totals).forEach(([item, qty]) => {
-        const card = document.createElement('div');
+              totals[item] +=
+                Number(qty) || 0;
+            }
+          );
+        });
 
-        card.className =
-          'bg-orange-100 rounded-xl p-3 text-center';
+      Object.entries(totals)
+        .forEach(
+          ([item, qty]) => {
+            const card =
+              document.createElement(
+                'div'
+              );
 
-        card.innerHTML = `
-          <div class="font-bold text-sm mb-1">
-            ${item}
-          </div>
+            card.className =
+              'bg-orange-100 rounded-xl p-3 text-center';
 
-          <div class="text-3xl font-bold">
-            ${qty}
-          </div>
-        `;
+            card.innerHTML = `
+              <div class="font-bold text-sm mb-1">
+                ${escapeHtml(item)}
+              </div>
 
-        summaryContainer.appendChild(card);
-      });
+              <div class="text-3xl font-bold">
+                ${qty}
+              </div>
+            `;
+
+            summaryContainer
+              .appendChild(card);
+          }
+        );
     }
   </script>
 </body>
