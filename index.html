@@ -2,21 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>Kitchen Order Manager</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100 p-4 text-gray-800">
   <div class="max-w-7xl mx-auto">
+
     <h1 class="text-3xl font-bold mb-6 text-center">
       Kitchen Order Manager
     </h1>
 
-    <!-- BOT STATUS -->
+    <!-- =========================
+         INTEGRATION STATUS
+    ========================== -->
+
     <div class="bg-white rounded-xl shadow p-4 mb-6">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-        <h2 class="text-xl font-bold">Integration Status</h2>
+      <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4"
+      >
+        <h2 class="text-xl font-bold">
+          Integration Status
+        </h2>
 
         <div class="text-xs text-gray-500">
           Status is based on the latest Firebase heartbeat
@@ -29,11 +42,21 @@
       ></div>
     </div>
 
-    <!-- CREATE ORDER -->
+    <!-- =========================
+         CREATE MANUAL ORDER
+    ========================== -->
+
     <div class="bg-white rounded-xl shadow p-4 mb-6">
-      <h2 class="text-xl font-bold mb-4">Create Order</h2>
+      <h2 class="text-xl font-bold mb-4">
+        Create Order
+      </h2>
+
+      <!-- FIRST ITEM ROW -->
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+
+        <!-- Boneless -->
+
         <div>
           <label class="font-bold text-sm block mb-1">
             Boneless
@@ -62,8 +85,14 @@
             </button>
           </div>
 
-          <input id="boneless" type="hidden" value="0" />
+          <input
+            id="boneless"
+            type="hidden"
+            value="0"
+          />
         </div>
+
+        <!-- Half Boneless -->
 
         <div>
           <label class="font-bold text-sm block mb-1">
@@ -93,8 +122,14 @@
             </button>
           </div>
 
-          <input id="halfboneless" type="hidden" value="0" />
+          <input
+            id="halfboneless"
+            type="hidden"
+            value="0"
+          />
         </div>
+
+        <!-- 8 Wings -->
 
         <div>
           <label class="font-bold text-sm block mb-1">
@@ -124,8 +159,14 @@
             </button>
           </div>
 
-          <input id="wings8" type="hidden" value="0" />
+          <input
+            id="wings8"
+            type="hidden"
+            value="0"
+          />
         </div>
+
+        <!-- 4 Wings -->
 
         <div>
           <label class="font-bold text-sm block mb-1">
@@ -155,11 +196,20 @@
             </button>
           </div>
 
-          <input id="wings4" type="hidden" value="0" />
+          <input
+            id="wings4"
+            type="hidden"
+            value="0"
+          />
         </div>
       </div>
 
+      <!-- SECOND ITEM ROW -->
+
       <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+
+        <!-- Beef Bulgogi -->
+
         <div>
           <label class="font-bold text-sm block mb-1">
             Beef Bulgogi
@@ -188,8 +238,14 @@
             </button>
           </div>
 
-          <input id="beefbulgogi" type="hidden" value="0" />
+          <input
+            id="beefbulgogi"
+            type="hidden"
+            value="0"
+          />
         </div>
+
+        <!-- Jeyuk -->
 
         <div>
           <label class="font-bold text-sm block mb-1">
@@ -219,8 +275,14 @@
             </button>
           </div>
 
-          <input id="jeyuk" type="hidden" value="0" />
+          <input
+            id="jeyuk"
+            type="hidden"
+            value="0"
+          />
         </div>
+
+        <!-- Bibimbap -->
 
         <div>
           <label class="font-bold text-sm block mb-1">
@@ -250,8 +312,14 @@
             </button>
           </div>
 
-          <input id="bibimbap" type="hidden" value="0" />
+          <input
+            id="bibimbap"
+            type="hidden"
+            value="0"
+          />
         </div>
+
+        <!-- Bulgogi Japche -->
 
         <div>
           <label class="font-bold text-sm block mb-1">
@@ -281,8 +349,14 @@
             </button>
           </div>
 
-          <input id="bulgogijapche" type="hidden" value="0" />
+          <input
+            id="bulgogijapche"
+            type="hidden"
+            value="0"
+          />
         </div>
+
+        <!-- Japche -->
 
         <div>
           <label class="font-bold text-sm block mb-1">
@@ -312,9 +386,15 @@
             </button>
           </div>
 
-          <input id="japche" type="hidden" value="0" />
+          <input
+            id="japche"
+            type="hidden"
+            value="0"
+          />
         </div>
       </div>
+
+      <!-- PICKUP TIME AND ADD BUTTON -->
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         <input
@@ -335,7 +415,10 @@
       </div>
     </div>
 
-    <!-- NEXT 15 MIN SUMMARY -->
+    <!-- =========================
+         PRODUCTION SUMMARY
+    ========================== -->
+
     <div class="bg-white rounded-xl shadow p-4 mb-6">
       <h2 class="text-xl font-bold mb-4">
         Production Needed Next 15 Minutes
@@ -347,7 +430,10 @@
       ></div>
     </div>
 
-    <!-- ACTIVE ORDERS -->
+    <!-- =========================
+         ACTIVE ORDERS
+    ========================== -->
+
     <div class="bg-white rounded-xl shadow p-4">
       <h2 class="text-xl font-bold mb-4">
         Active Orders
@@ -401,11 +487,17 @@
         "1:910563195014:web:7c826936ec28edfa273907"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+    const app =
+      initializeApp(firebaseConfig);
 
-    const ordersRef = ref(db, 'orders');
-    const botStatusRef = ref(db, 'botStatus');
+    const db =
+      getDatabase(app);
+
+    const ordersRef =
+      ref(db, 'orders');
+
+    const botStatusRef =
+      ref(db, 'botStatus');
 
     // =========================
     // DOM REFERENCES
@@ -532,9 +624,8 @@
         Number(readyAt);
 
       if (
-        !Number.isFinite(
-          milliseconds
-        )
+        !Number.isFinite(milliseconds) ||
+        milliseconds <= 0
       ) {
         return 'Unknown time';
       }
@@ -556,9 +647,7 @@
       );
     }
 
-    function formatDateTime(
-      milliseconds
-    ) {
+    function formatDateTime(milliseconds) {
       const value =
         Number(milliseconds);
 
@@ -592,9 +681,7 @@
       );
     }
 
-    function formatAge(
-      milliseconds
-    ) {
+    function formatAge(milliseconds) {
       const value =
         Number(milliseconds);
 
@@ -602,7 +689,7 @@
         !Number.isFinite(value) ||
         value <= 0
       ) {
-        return 'never';
+        return 'Never';
       }
 
       const ageSeconds =
@@ -617,7 +704,7 @@
         );
 
       if (ageSeconds < 5) {
-        return 'just now';
+        return 'Just now';
       }
 
       if (ageSeconds < 60) {
@@ -638,7 +725,16 @@
           ageMinutes / 60
         );
 
-      return `${ageHours} h ago`;
+      if (ageHours < 24) {
+        return `${ageHours} h ago`;
+      }
+
+      const ageDays =
+        Math.floor(
+          ageHours / 24
+        );
+
+      return `${ageDays} d ago`;
     }
 
     function humanizeState(state) {
@@ -710,8 +806,7 @@
       if (
         status.online === false ||
         !Number.isFinite(lastSeen) ||
-        age >
-          BOT_DELAYED_MAX_AGE_MS
+        age > BOT_DELAYED_MAX_AGE_MS
       ) {
         return {
           label:
@@ -730,8 +825,7 @@
 
       if (
         status.state === 'error' ||
-        age >
-          BOT_ONLINE_MAX_AGE_MS
+        age > BOT_ONLINE_MAX_AGE_MS
       ) {
         return {
           label:
@@ -801,39 +895,74 @@
               )
             : 'None recorded';
 
+        const lastFeedText =
+          status?.lastFeedAt
+            ? formatAge(
+                status.lastFeedAt
+              )
+            : 'Not observed yet';
+
+        let extraInfo = '';
+
+        if (
+          botName === 'foodora' &&
+          status
+        ) {
+          extraInfo = `
+            <div class="flex justify-between gap-3 text-xs">
+              <span class="text-gray-500">
+                Last order feed
+              </span>
+
+              <span class="font-medium text-right">
+                ${escapeHtml(
+                  lastFeedText
+                )}
+              </span>
+            </div>
+          `;
+        }
+
+        if (
+          botName === 'wolt' &&
+          status
+        ) {
+          extraInfo = `
+            <div class="flex justify-between gap-3 text-xs">
+              <span class="text-gray-500">
+                Last successful poll
+              </span>
+
+              <span class="font-medium text-right">
+                ${escapeHtml(
+                  formatAge(
+                    status.lastSuccessfulPollAt
+                  )
+                )}
+              </span>
+            </div>
+          `;
+        }
+
         const errorBlock =
           status?.lastError
             ? `
-              <div class="mt-3 rounded-lg bg-red-50 border border-red-200 p-2">
-                <div class="text-xs font-bold text-red-800 mb-1">
+              <div
+                class="mt-3 rounded-lg bg-red-50 border border-red-200 p-2"
+              >
+                <div
+                  class="text-xs font-bold text-red-800 mb-1"
+                >
                   Latest error
                 </div>
 
-                <div class="text-xs text-red-700 break-words">
+                <div
+                  class="text-xs text-red-700 break-words"
+                >
                   ${escapeHtml(
                     status.lastError
                   )}
                 </div>
-              </div>
-            `
-            : '';
-
-        const extraInfo =
-          botName === 'wolt' &&
-          status
-            ? `
-              <div class="flex justify-between gap-3 text-xs">
-                <span class="text-gray-500">
-                  Last successful poll
-                </span>
-
-                <span class="font-medium text-right">
-                  ${escapeHtml(
-                    formatAge(
-                      status.lastSuccessfulPollAt
-                    )
-                  )}
-                </span>
               </div>
             `
             : '';
@@ -847,7 +976,9 @@
           `border ${health.borderClass} rounded-xl p-4 bg-gray-50`;
 
         card.innerHTML = `
-          <div class="flex items-center justify-between gap-3 mb-3">
+          <div
+            class="flex items-center justify-between gap-3 mb-3"
+          >
             <div class="flex items-center gap-2">
               <span
                 class="w-3 h-3 rounded-full ${health.dotClass}"
@@ -863,7 +994,9 @@
             <span
               class="text-xs font-bold px-2 py-1 rounded-full ${health.badgeClass}"
             >
-              ${health.label}
+              ${escapeHtml(
+                health.label
+              )}
             </span>
           </div>
 
@@ -936,20 +1069,20 @@
     );
 
     /*
-     * Recalculates how long ago the
-     * last heartbeat occurred.
-     *
-     * This is local only and does not
-     * write anything to Firebase.
+     * Updates the displayed ages locally.
+     * This does not write to Firebase.
      */
-    setInterval(() => {
-      renderBotStatuses(
-        latestBotStatusData
-      );
-    }, 5000);
+    setInterval(
+      () => {
+        renderBotStatuses(
+          latestBotStatusData
+        );
+      },
+      5000
+    );
 
     // =========================
-    // PLUS/MINUS ITEM BUTTONS
+    // MANUAL ITEM BUTTONS
     // =========================
 
     document
@@ -1219,7 +1352,6 @@
           );
         } finally {
           addBtn.disabled = false;
-
           addBtn.innerText =
             'Add Order';
         }
@@ -1324,7 +1456,7 @@
     );
 
     // =========================
-    // RENDER ACTIVE ORDERS
+    // RENDER ORDERS
     // =========================
 
     function renderOrders(data) {
@@ -1339,25 +1471,22 @@
                 'object'
           )
           .sort(
-            (a, b) => {
-              return (
-                Number(
-                  a[1].readyAt ||
-                  0
-                ) -
-                Number(
-                  b[1].readyAt ||
-                  0
-                )
-              );
-            }
+            (a, b) =>
+              Number(
+                a[1].readyAt || 0
+              ) -
+              Number(
+                b[1].readyAt || 0
+              )
           );
 
       if (
         entries.length === 0
       ) {
         ordersContainer.innerHTML = `
-          <div class="text-center text-gray-500 py-8">
+          <div
+            class="text-center text-gray-500 py-8"
+          >
             No active orders
           </div>
         `;
@@ -1388,8 +1517,7 @@
           null;
 
         const manuallyAdjusted =
-          order
-            .readyAtManuallyAdjusted ===
+          order.readyAtManuallyAdjusted ===
           true;
 
         const itemLines =
@@ -1402,7 +1530,9 @@
             )
             .map(
               ([name, qty]) => `
-                <div class="flex justify-between border-b py-1">
+                <div
+                  class="flex justify-between border-b py-1"
+                >
                   <span>
                     ${escapeHtml(name)}
                   </span>
@@ -1431,7 +1561,9 @@
         const statusLine =
           platformStatus
             ? `
-              <div class="text-xs text-gray-500 mt-1">
+              <div
+                class="text-xs text-gray-500 mt-1"
+              >
                 Platform status:
                 ${escapeHtml(
                   platformStatus
@@ -1443,7 +1575,9 @@
         const adjustedLine =
           manuallyAdjusted
             ? `
-              <div class="text-xs text-orange-700 mt-1">
+              <div
+                class="text-xs text-orange-700 mt-1"
+              >
                 Pickup time manually adjusted
               </div>
             `
@@ -1458,10 +1592,13 @@
           'bg-gray-50 border rounded-xl p-4';
 
         card.innerHTML = `
-          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"
+          >
             <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-2 mb-2">
+              <div
+                class="flex flex-wrap items-center gap-2 mb-2"
+              >
                 <div class="text-lg font-bold">
                   ${orderTitle}
                 </div>
@@ -1475,7 +1612,9 @@
                 </span>
               </div>
 
-              <div class="text-sm text-gray-500 mb-1">
+              <div
+                class="text-sm text-gray-500 mb-1"
+              >
                 Ready at
                 ${escapeHtml(
                   formatReadyTime(
@@ -1490,22 +1629,31 @@
               <div class="mt-3">
                 ${
                   itemLines ||
-                  '<div class="text-gray-500">No mapped kitchen items</div>'
+                  `
+                    <div class="text-gray-500">
+                      No mapped kitchen items
+                    </div>
+                  `
                 }
               </div>
             </div>
 
             <div class="text-center min-w-[220px]">
-              <div class="text-sm text-gray-500 mb-2">
+              <div
+                class="text-sm text-gray-500 mb-2"
+              >
                 Pickup In
               </div>
 
-              <div class="flex items-center justify-center gap-3">
+              <div
+                class="flex items-center justify-center gap-3"
+              >
                 <button
                   class="adjustTimeBtn bg-green-700 text-white w-10 h-10 rounded-lg text-xl font-bold disabled:opacity-50"
                   data-id="${escapeHtml(id)}"
                   data-minutes="-1"
                   title="Reduce by 1 minute"
+                  aria-label="Reduce pickup time by one minute"
                 >
                   −
                 </button>
@@ -1524,12 +1672,15 @@
                   data-id="${escapeHtml(id)}"
                   data-minutes="1"
                   title="Increase by 1 minute"
+                  aria-label="Increase pickup time by one minute"
                 >
                   +
                 </button>
               </div>
 
-              <div class="text-xs text-gray-500 mt-2">
+              <div
+                class="text-xs text-gray-500 mt-2"
+              >
                 Adjust by 1 minute
               </div>
             </div>
@@ -1546,6 +1697,8 @@
         ordersContainer
           .appendChild(card);
       }
+
+      // COMPLETE ORDER BUTTONS
 
       document
         .querySelectorAll(
@@ -1589,6 +1742,8 @@
           );
         });
 
+      // ADJUST TIME BUTTONS
+
       document
         .querySelectorAll(
           '.adjustTimeBtn'
@@ -1607,9 +1762,7 @@
 
               if (
                 !orderId ||
-                !Number.isFinite(
-                  minutes
-                )
+                !Number.isFinite(minutes)
               ) {
                 return;
               }
@@ -1656,9 +1809,7 @@
             );
 
           if (
-            !Number.isFinite(
-              readyAt
-            ) ||
+            !Number.isFinite(readyAt) ||
             readyAt <= 0
           ) {
             timer.innerHTML =
@@ -1704,7 +1855,7 @@
     );
 
     // =========================
-    // SUMMARY NEXT 15 MINUTES
+    // PRODUCTION SUMMARY
     // =========================
 
     function renderSummary(data) {
@@ -1742,9 +1893,7 @@
             );
 
           if (
-            !Number.isFinite(
-              readyAt
-            ) ||
+            !Number.isFinite(readyAt) ||
             readyAt > next15
           ) {
             return;
@@ -1778,7 +1927,9 @@
               'bg-orange-100 rounded-xl p-3 text-center';
 
             card.innerHTML = `
-              <div class="font-bold text-sm mb-1">
+              <div
+                class="font-bold text-sm mb-1"
+              >
                 ${escapeHtml(item)}
               </div>
 
