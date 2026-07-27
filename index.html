@@ -572,6 +572,9 @@
     const BOT_DELAYED_MAX_AGE_MS =
       120 * 1000;
 
+    const FOODORA_FEED_MAX_AGE_MS =
+      120 * 1000;
+
     let latestBotStatusData = {};
 
     // =========================
@@ -779,7 +782,10 @@
     // BOT STATUS
     // =========================
 
-    function getBotHealth(status) {
+    function getBotHealth(
+      botName,
+      status
+    ) {
       if (!status) {
         return {
           label:
@@ -799,14 +805,20 @@
       const lastSeen =
         Number(status.lastSeen);
 
-      const age =
+      const heartbeatAge =
         Date.now() -
         lastSeen;
 
+      /*
+       * First check whether the Node
+       * process has stopped sending
+       * heartbeat data.
+       */
       if (
         status.online === false ||
         !Number.isFinite(lastSeen) ||
-        age > BOT_DELAYED_MAX_AGE_MS
+        heartbeatAge >
+          BOT_DELAYED_MAX_AGE_MS
       ) {
         return {
           label:
@@ -823,9 +835,79 @@
         };
       }
 
+      /*
+       * Foodora must also have an active
+       * order-feed response.
+       *
+       * Before the first feed response,
+       * startedAt is used as the reference.
+       * Foodora therefore has two minutes
+       * after startup to receive the first
+       * feed response.
+       */
+      if (botName === 'foodora') {
+        const lastFeedAt =
+          Number(status.lastFeedAt);
+
+        const startedAt =
+          Number(status.startedAt);
+
+        const hasObservedFeed =
+          Number.isFinite(lastFeedAt) &&
+          lastFeedAt > 0;
+
+        const feedReferenceTime =
+          hasObservedFeed
+            ? lastFeedAt
+            : startedAt;
+
+        const feedAge =
+          Date.now() -
+          feedReferenceTime;
+
+        if (
+          Number.isFinite(
+            feedReferenceTime
+          ) &&
+          feedAge >
+            FOODORA_FEED_MAX_AGE_MS
+        ) {
+          return {
+            label:
+              'Feed offline',
+
+            dotClass:
+              'bg-red-500',
+
+            badgeClass:
+              'bg-red-100 text-red-800',
+
+            borderClass:
+              'border-red-200'
+          };
+        }
+
+        if (!hasObservedFeed) {
+          return {
+            label:
+              'Waiting for feed',
+
+            dotClass:
+              'bg-yellow-500',
+
+            badgeClass:
+              'bg-yellow-100 text-yellow-800',
+
+            borderClass:
+              'border-yellow-200'
+          };
+        }
+      }
+
       if (
         status.state === 'error' ||
-        age > BOT_ONLINE_MAX_AGE_MS
+        heartbeatAge >
+          BOT_ONLINE_MAX_AGE_MS
       ) {
         return {
           label:
@@ -869,7 +951,10 @@
           null;
 
         const health =
-          getBotHealth(status);
+          getBotHealth(
+            botName,
+            status
+          );
 
         const sourceLabel =
           getSourceLabel(botName);
@@ -911,7 +996,7 @@
           extraInfo = `
             <div class="flex justify-between gap-3 text-xs">
               <span class="text-gray-500">
-                Last order feed
+                Last feed response
               </span>
 
               <span class="font-medium text-right">
@@ -1069,7 +1154,9 @@
     );
 
     /*
-     * Updates the displayed ages locally.
+     * Updates the displayed ages and
+     * health colours locally.
+     *
      * This does not write to Firebase.
      */
     setInterval(
