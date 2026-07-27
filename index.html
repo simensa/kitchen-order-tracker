@@ -17,14 +17,19 @@
 
     <!-- CREATE ORDER -->
     <div class="bg-white rounded-xl shadow p-4 mb-6">
-      <h2 class="text-xl font-bold mb-4">Create Order</h2>
+      <h2 class="text-xl font-bold mb-4">
+        Create Order
+      </h2>
 
       <!-- GRID 1 -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
 
         <!-- Boneless -->
         <div>
-          <label class="font-bold text-sm block mb-1">Boneless</label>
+          <label class="font-bold text-sm block mb-1">
+            Boneless
+          </label>
+
           <div class="flex items-center justify-center gap-2">
             <button
               class="minusBtn bg-green-700 text-white w-8 h-8 rounded font-bold"
@@ -48,7 +53,11 @@
             </button>
           </div>
 
-          <input id="boneless" type="hidden" value="0" />
+          <input
+            id="boneless"
+            type="hidden"
+            value="0"
+          />
         </div>
 
         <!-- Half Boneless -->
@@ -80,12 +89,18 @@
             </button>
           </div>
 
-          <input id="halfboneless" type="hidden" value="0" />
+          <input
+            id="halfboneless"
+            type="hidden"
+            value="0"
+          />
         </div>
 
         <!-- 8 Wings -->
         <div>
-          <label class="font-bold text-sm block mb-1">8 Wings</label>
+          <label class="font-bold text-sm block mb-1">
+            8 Wings
+          </label>
 
           <div class="flex items-center justify-center gap-2">
             <button
@@ -110,12 +125,18 @@
             </button>
           </div>
 
-          <input id="wings8" type="hidden" value="0" />
+          <input
+            id="wings8"
+            type="hidden"
+            value="0"
+          />
         </div>
 
         <!-- 4 Wings -->
         <div>
-          <label class="font-bold text-sm block mb-1">4 Wings</label>
+          <label class="font-bold text-sm block mb-1">
+            4 Wings
+          </label>
 
           <div class="flex items-center justify-center gap-2">
             <button
@@ -140,7 +161,11 @@
             </button>
           </div>
 
-          <input id="wings4" type="hidden" value="0" />
+          <input
+            id="wings4"
+            type="hidden"
+            value="0"
+          />
         </div>
       </div>
 
@@ -176,12 +201,18 @@
             </button>
           </div>
 
-          <input id="beefbulgogi" type="hidden" value="0" />
+          <input
+            id="beefbulgogi"
+            type="hidden"
+            value="0"
+          />
         </div>
 
         <!-- Jeyuk -->
         <div>
-          <label class="font-bold text-sm block mb-1">Jeyuk</label>
+          <label class="font-bold text-sm block mb-1">
+            Jeyuk
+          </label>
 
           <div class="flex items-center justify-center gap-2">
             <button
@@ -206,12 +237,18 @@
             </button>
           </div>
 
-          <input id="jeyuk" type="hidden" value="0" />
+          <input
+            id="jeyuk"
+            type="hidden"
+            value="0"
+          />
         </div>
 
         <!-- Bibimbap -->
         <div>
-          <label class="font-bold text-sm block mb-1">Bibimbap</label>
+          <label class="font-bold text-sm block mb-1">
+            Bibimbap
+          </label>
 
           <div class="flex items-center justify-center gap-2">
             <button
@@ -236,7 +273,11 @@
             </button>
           </div>
 
-          <input id="bibimbap" type="hidden" value="0" />
+          <input
+            id="bibimbap"
+            type="hidden"
+            value="0"
+          />
         </div>
 
         <!-- Bulgogi Japche -->
@@ -268,12 +309,18 @@
             </button>
           </div>
 
-          <input id="bulgogijapche" type="hidden" value="0" />
+          <input
+            id="bulgogijapche"
+            type="hidden"
+            value="0"
+          />
         </div>
 
         <!-- Japche -->
         <div>
-          <label class="font-bold text-sm block mb-1">Japche</label>
+          <label class="font-bold text-sm block mb-1">
+            Japche
+          </label>
 
           <div class="flex items-center justify-center gap-2">
             <button
@@ -298,7 +345,11 @@
             </button>
           </div>
 
-          <input id="japche" type="hidden" value="0" />
+          <input
+            id="japche"
+            type="hidden"
+            value="0"
+          />
         </div>
       </div>
 
@@ -357,7 +408,8 @@
       ref,
       push,
       onValue,
-      remove
+      remove,
+      runTransaction
     } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
     // =========================
@@ -538,7 +590,7 @@
     }
 
     // =========================
-    // PLUS/MINUS BUTTONS
+    // PLUS/MINUS ITEM BUTTONS
     // =========================
 
     document
@@ -779,6 +831,7 @@
 
               items,
               readyAt,
+
               createdAt:
                 now,
 
@@ -805,6 +858,75 @@
         }
       }
     );
+
+    // =========================
+    // ADJUST ORDER TIME
+    // =========================
+
+    async function adjustOrderTime(
+      orderId,
+      minutes
+    ) {
+      if (
+        !orderId ||
+        !Number.isFinite(minutes)
+      ) {
+        return;
+      }
+
+      const orderRef = ref(
+        db,
+        `orders/${orderId}`
+      );
+
+      const result =
+        await runTransaction(
+          orderRef,
+          currentOrder => {
+            if (
+              !currentOrder ||
+              typeof currentOrder !==
+                'object'
+            ) {
+              return currentOrder;
+            }
+
+            const currentReadyAt =
+              Number(
+                currentOrder.readyAt
+              );
+
+            const baseReadyAt =
+              Number.isFinite(
+                currentReadyAt
+              )
+                ? currentReadyAt
+                : Date.now();
+
+            return {
+              ...currentOrder,
+
+              readyAt:
+                baseReadyAt +
+                minutes *
+                60 *
+                1000,
+
+              updatedAt:
+                Date.now(),
+
+              readyAtManuallyAdjusted:
+                true
+            };
+          }
+        );
+
+      if (!result.committed) {
+        throw new Error(
+          'Firebase transaction was not committed'
+        );
+      }
+    }
 
     // =========================
     // LIVE FIREBASE UPDATES
@@ -894,6 +1016,10 @@
           order.platformStatus ||
           null;
 
+        const manuallyAdjusted =
+          order.readyAtManuallyAdjusted ===
+          true;
+
         const itemLines =
           Object.entries(
             order.items || {}
@@ -942,6 +1068,15 @@
             `
             : '';
 
+        const adjustedLine =
+          manuallyAdjusted
+            ? `
+              <div class="text-xs text-orange-700 mt-1">
+                Pickup time manually adjusted
+              </div>
+            `
+            : '';
+
         const card =
           document.createElement(
             'div'
@@ -968,7 +1103,7 @@
                 </span>
               </div>
 
-              <div class="text-sm text-gray-500 mb-2">
+              <div class="text-sm text-gray-500 mb-1">
                 Ready at
                 ${escapeHtml(
                   formatReadyTime(
@@ -978,6 +1113,7 @@
               </div>
 
               ${statusLine}
+              ${adjustedLine}
 
               <div class="mt-3">
                 ${
@@ -987,20 +1123,46 @@
               </div>
             </div>
 
-            <div class="text-center min-w-[140px]">
-              <div class="text-sm text-gray-500 mb-1">
+            <div class="text-center min-w-[220px]">
+              <div class="text-sm text-gray-500 mb-2">
                 Pickup In
               </div>
 
-              <div
-                id="timer-${escapeHtml(id)}"
-                class="orderTimer text-3xl font-bold"
-                data-ready-at="${
-                  Number(
-                    order.readyAt
-                  ) || 0
-                }"
-              ></div>
+              <div class="flex items-center justify-center gap-3">
+                <button
+                  class="adjustTimeBtn bg-green-700 text-white w-10 h-10 rounded-lg text-xl font-bold disabled:opacity-50"
+                  data-id="${escapeHtml(id)}"
+                  data-minutes="-1"
+                  aria-label="Reduce pickup time by one minute"
+                  title="Reduce by 1 minute"
+                >
+                  −
+                </button>
+
+                <div
+                  id="timer-${escapeHtml(id)}"
+                  class="orderTimer text-3xl font-bold min-w-[110px]"
+                  data-ready-at="${
+                    Number(
+                      order.readyAt
+                    ) || 0
+                  }"
+                ></div>
+
+                <button
+                  class="adjustTimeBtn bg-orange-500 text-white w-10 h-10 rounded-lg text-xl font-bold disabled:opacity-50"
+                  data-id="${escapeHtml(id)}"
+                  data-minutes="1"
+                  aria-label="Increase pickup time by one minute"
+                  title="Increase by 1 minute"
+                >
+                  +
+                </button>
+              </div>
+
+              <div class="text-xs text-gray-500 mt-2">
+                Adjust by 1 minute
+              </div>
             </div>
 
             <button
@@ -1017,6 +1179,7 @@
         );
       }
 
+      // COMPLETE ORDER BUTTONS
       document
         .querySelectorAll(
           '.deleteBtn'
@@ -1054,6 +1217,53 @@
 
                 btn.innerText =
                   'Completed';
+              }
+            }
+          );
+        });
+
+      // ADJUST TIME BUTTONS
+      document
+        .querySelectorAll(
+          '.adjustTimeBtn'
+        )
+        .forEach(btn => {
+          btn.addEventListener(
+            'click',
+            async () => {
+              const orderId =
+                btn.dataset.id;
+
+              const minutes =
+                Number(
+                  btn.dataset.minutes
+                );
+
+              if (
+                !orderId ||
+                !Number.isFinite(minutes)
+              ) {
+                return;
+              }
+
+              btn.disabled = true;
+
+              try {
+                await adjustOrderTime(
+                  orderId,
+                  minutes
+                );
+              } catch (error) {
+                console.error(
+                  'Could not adjust pickup time:',
+                  error
+                );
+
+                alert(
+                  'Could not change pickup time. Please try again.'
+                );
+
+                btn.disabled = false;
               }
             }
           );
